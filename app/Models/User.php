@@ -29,7 +29,7 @@ class User extends Authenticatable{
        'score_confiance' => 'integer',
     ];
 
-  
+ 
     public function estStandard(): bool{
         return $this->role === 'standard';
     }
