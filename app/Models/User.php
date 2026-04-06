@@ -71,7 +71,8 @@ public function peutAjouterFavori(): bool{
    }
 
    
-    public function aValidationAcceleree(): bool{
+   
+   public function aValidationAcceleree(): bool{
         return $this->estVerifie();
     }
 
