@@ -92,7 +92,8 @@ class AnnonceController extends Controller{
     }
 
  
-   public function update(Request $request, Annonce $annonce){
+   
+    public function update(Request $request, Annonce $annonce){
         if ($annonce->user_id !== Auth::id()) {
             abort(403);
         }
