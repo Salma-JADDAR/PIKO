@@ -65,6 +65,7 @@ class Annonce extends Model{
     }
 
    
+    
     public function modifier(array $nouvellesDonnees): void{
         if (isset($nouvellesDonnees['titre'])) {
             $this->titre = $nouvellesDonnees['titre'];
