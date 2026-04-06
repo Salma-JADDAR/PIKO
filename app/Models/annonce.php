@@ -102,6 +102,7 @@ class Annonce extends Model{
     }
 
   
+    
     public function getPhotoPrincipale(): ?Photo{
         return $this->photos()->where('est_principale', true)->first();
     }
