@@ -84,6 +84,7 @@ class Annonce extends Model{
     }
 
   
+   
     public function marquerVendue(): void{
         $this->etat = 'vendue';
         $this->save();
