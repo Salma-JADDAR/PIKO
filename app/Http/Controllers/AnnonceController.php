@@ -122,6 +122,7 @@ class AnnonceController extends Controller{
     }
 
   
+    
     public function vendue(Annonce $annonce){
         if ($annonce->user_id !== Auth::id()) {
             abort(403);
