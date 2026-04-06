@@ -77,6 +77,7 @@ public function peutAjouterFavori(): bool{
     }
 
    
+   
     public function mettreAJourStatutVerifie(): void{
         if ($this->score_confiance > 70 && $this->estStandard()) {
             $this->role = 'verifie';
