@@ -58,8 +58,7 @@ class AuthController extends Controller{
         return redirect('/')->with('success', 'Bienvenue !');
     }
     
-   
-    public function logout(Request $request){
+   public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
