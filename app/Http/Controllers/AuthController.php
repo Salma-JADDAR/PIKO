@@ -28,7 +28,7 @@ class AuthController extends Controller{
     }
     
     
-    public function showRegister(){
+    public function afficherregistre(){
         return view('auth.register');
     }
     
