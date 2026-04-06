@@ -137,6 +137,7 @@ class AnnonceController extends Controller{
     }
 
   
+    
     public function destroy(Annonce $annonce){
         $userId = Auth::id();
         $user = Auth::user();
