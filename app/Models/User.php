@@ -63,7 +63,7 @@ class User extends Authenticatable{
     }
 
  
-  public function peutAjouterFavori(): bool{
+public function peutAjouterFavori(): bool{
     if ($this->estAdmin()) return true;
     if ($this->estVerifie()) return true;
     
