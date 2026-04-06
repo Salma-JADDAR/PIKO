@@ -51,6 +51,7 @@ class User extends Authenticatable{
     };
     }
 
+    
     public function peutPublier(): bool{
         if ($this->estAdmin()) return true;
         
