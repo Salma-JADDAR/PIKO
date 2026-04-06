@@ -32,8 +32,7 @@ class AuthController extends Controller{
         return view('auth.register');
     }
     
-   
-    public function register(Request $request){
+   public function register(Request $request){
         $validated = $request->validate([
             'nom' => 'required|max:255',
             'prenom' => 'required|max:255',
