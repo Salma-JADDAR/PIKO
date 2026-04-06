@@ -25,7 +25,7 @@ class AnnonceController extends Controller{
         return view('annonces.create', compact('especes'));
     }
 
-   public function store(Request $request){
+   public function enregistre(Request $request){
         $request->validate([
             'titre' => 'required|max:60',
             'description' => 'required',
@@ -68,7 +68,7 @@ class AnnonceController extends Controller{
     }
 
     
-    public function show(Annonce $annonce){
+    public function afficher(Annonce $annonce){
         $annonce->incrementerVues();
         $annonce->load(['utilisateur', 'espece', 'photos']);
         
@@ -79,6 +79,7 @@ class AnnonceController extends Controller{
         
         return view('annonces.show', compact('annonce', 'estFavori'));
     }
+
 
 
     public function edit(Annonce $annonce){
