@@ -42,7 +42,8 @@ class User extends Authenticatable{
         return $this->role === 'admin';
     }
 
-   public function getQuotaAnnoncesAttribute(): int{
+   
+    public function getQuotaAnnoncesAttribute(): int{
     return match($this->role) {
         'verifie' => 5,
         'admin' => 999,
