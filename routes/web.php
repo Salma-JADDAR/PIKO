@@ -1,5 +1,4 @@
 <?php
-// routes/web.php
 
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\AuthController;
@@ -11,23 +10,30 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
-// Routes publiques (pas besoin d'être connecté)
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// ==================== ROUTES PUBLIQUES ====================
 Route::get('/', [AnnonceController::class, 'index'])->name('home');
 Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
 Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonces.show');
 
-// Routes d'authentification (pour les invités)
+// ==================== ROUTES D'AUTHENTIFICATION ====================
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/login', [AuthController::class, 'afficherlogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::get('/register', [AuthController::class, 'afficherregistre'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Routes protégées (nécessite d'être connecté)
-Route::middleware('auth.custom')->group(function () {
+// ==================== ROUTES PROTÉGÉES (CONNECTÉ) ====================
+Route::middleware('auth')->group(function () {
+    
     // Profil
     Route::get('/profil', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profil', [ProfileController::class, 'update'])->name('profile.update');
@@ -59,8 +65,8 @@ Route::middleware('auth.custom')->group(function () {
     Route::delete('/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');
 });
 
-// Routes admin (nécessite d'être connecté ET admin)
-Route::middleware(['auth.custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+// ==================== ROUTES ADMIN ====================
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::post('/annonces/{annonce}/approuver', [AdminController::class, 'approuver'])->name('annonces.approuver');
     Route::post('/annonces/{annonce}/rejeter', [AdminController::class, 'rejeter'])->name('annonces.rejeter');

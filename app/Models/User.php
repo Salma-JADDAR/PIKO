@@ -43,13 +43,15 @@ class User extends Authenticatable{
     }
 
    
-    public function getQuotaAnnoncesAttribute(): int{
-    return match($this->role) {
-        'verifie' => 5,
-        'admin' => 999,
-        default => 3, 
-    };
+public function getQuotaAnnoncesAttribute(): int{
+    if ($this->role === 'verifie') {
+        return 5;
+    } elseif ($this->role === 'admin') {
+        return 999;
+    } else {
+        return 3;
     }
+}
 
     
     public function peutPublier(): bool{
