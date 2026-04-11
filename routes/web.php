@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EspeceController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ==================== ROUTES PUBLIQUES ====================
-Route::get('/', [AnnonceController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/a-propos', [AboutController::class, 'index'])->name('about');
 Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
 Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonces.show');
 
