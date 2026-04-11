@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piko · Inscription</title>
+    <title>Piko · Connexion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -19,7 +19,7 @@
             padding: 20px;
         }
 
-        .register-container {
+        .login-container {
             max-width: 1000px;
             width: 100%;
             background: white;
@@ -93,18 +93,7 @@
             text-align: center;
         }
 
-     
-        .row-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .row-group .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 24px; }
         .form-group label { 
             display: block; 
             font-size: 13px; 
@@ -142,8 +131,28 @@
             background: white;
         }
 
-        .password-input { position: relative; }
-        .password-input input { padding-right: 42px; }
+        .password-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .forgot-link {
+            font-size: 12px;
+            color: #2d6a4f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .password-input {
+            position: relative;
+        }
+        .password-input input {
+            padding-right: 46px;
+        }
         .toggle-password {
             position: absolute;
             right: 14px;
@@ -153,17 +162,33 @@
             color: #9ca3af;
             font-size: 16px;
             transition: color 0.2s;
+            z-index: 2;
+            background: transparent;
         }
-        .toggle-password:hover { color: #2d6a4f; }
-
-        .password-hint { 
-            display: block; 
-            font-size: 11px; 
-            color: #9ca3af; 
-            margin-top: 6px;
+        .toggle-password:hover {
+            color: #2d6a4f;
         }
 
-        .btn-register {
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+        .checkbox-group input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #2d6a4f;
+        }
+        .checkbox-group label {
+            font-size: 13px;
+            color: #374151;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .btn-login {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
@@ -174,30 +199,30 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 16px;
+            margin-top: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-        .btn-register:hover { 
+        .btn-login:hover { 
             transform: translateY(-2px); 
             box-shadow: 0 6px 20px rgba(45, 106, 79, 0.3); 
         }
 
-        .login-link { 
+        .register-link { 
             text-align: center; 
-            margin-top: 24px; 
+            margin-top: 28px; 
             font-size: 13px; 
             color: #6b7280; 
         }
-        .login-link a { 
+        .register-link a { 
             color: #2d6a4f; 
             text-decoration: none; 
             font-weight: 700; 
             transition: color 0.2s;
         }
-        .login-link a:hover { 
+        .register-link a:hover { 
             color: #1e4620;
             text-decoration: underline; 
         }
@@ -213,7 +238,7 @@
             flex: 1;
             width: 50%;
             position: relative;
-          background-image: url("{{ asset('images/login.png') }}");
+            background-image: url("{{ asset('images/login.png') }}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -227,10 +252,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(145deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.75) 100%);
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.8) 100%);
         }
 
-        .featured-content {
+        .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
@@ -242,77 +267,46 @@
             transform: translateY(-50%);
         }
 
-        .featured-badge {
-            display: inline-block;
-            font-size: 11px;
-            letter-spacing: 3px;
-            font-weight: 700;
-            color: #ffd966;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 6px 16px;
-            border-radius: 30px;
-            backdrop-filter: blur(4px);
-        }
-
-        .featured-content h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
+        .hero-quote {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.3;
             color: white;
+            margin-bottom: 24px;
             letter-spacing: -0.5px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            text-align: left;
         }
 
-        .quote-wrapper {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin: 24px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .quote {
-            font-style: italic;
+        .hero-description {
             font-size: 14px;
             line-height: 1.6;
-            color: white;
-            font-weight: 400;
-            text-align: center;
-            margin: 0;
-        }
-
-        .description {
-            font-size: 13px;
-            line-height: 1.6;
-            text-align: center;
             color: rgba(255, 255, 255, 0.85);
-            margin-top: 8px;
+            max-width: 90%;
+            text-align: left;
         }
 
         @media (max-width: 900px) {
-            .register-container { flex-direction: column; max-width: 550px; }
+            .login-container { flex-direction: column; max-width: 550px; }
             .form-side { width: 100%; padding: 32px 28px; }
-            .hero-side { width: 100%; min-height: 450px; }
-            .featured-content { top: auto; transform: none; padding: 40px 30px; }
-            .featured-content h2 { font-size: 32px; }
+            .hero-side { width: 100%; min-height: 300px; }
+            .hero-content { padding: 40px 30px; }
+            .hero-quote { font-size: 20px; }
+            .hero-description { font-size: 13px; max-width: 100%; }
         }
 
         @media (max-width: 480px) {
             .form-side { padding: 24px 20px; }
             .form-header h2 { font-size: 26px; }
-            .hero-side { min-height: 400px; }
-            .featured-content h2 { font-size: 28px; }
-            .quote-wrapper { padding: 16px 18px; }
-            .quote { font-size: 13px; }
-            .description { font-size: 12px; }
-            .row-group { flex-direction: column; gap: 20px; }
+            .hero-side { min-height: 280px; }
+            .hero-content { padding: 30px 24px; }
+            .hero-quote { font-size: 18px; }
+            .hero-description { font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="register-container">
+    <div class="login-container">
         <div class="form-side">
             <div class="logo">
                 <h1>Piko</h1>
@@ -320,37 +314,12 @@
             </div>
 
             <div class="form-header">
-                <h2>Join the Avian Sanctuary</h2>
-                <p>Accédez à une communauté d'éleveurs passionnés.</p>
+                <h2>Welcome Back</h2>
+                <p>Entrez vos identifiants pour accéder au sanctuaire aviaire.</p>
             </div>
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
-
-              
-                <div class="row-group">
-                    <div class="form-group">
-                        <label for="nom">Nom</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-user input-icon"></i>
-                            <input type="text" id="nom" name="nom" value="{{ old('nom') }}" placeholder="Dupont" required>
-                        </div>
-                        @error('nom')
-                            <small class="error-message">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="prenom">Prénom</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-user input-icon"></i>
-                            <input type="text" id="prenom" name="prenom" value="{{ old('prenom') }}" placeholder="Jean" required>
-                        </div>
-                        @error('prenom')
-                            <small class="error-message">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label for="email">Adresse email</label>
@@ -364,78 +333,61 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="ville">Ville</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-map-marker-alt input-icon"></i>
-                        <input type="text" id="ville" name="ville" value="{{ old('ville') }}" placeholder="Casablanca, Rabat, ..." required>
+                    <div class="password-row">
+                        <label for="password">Mot de passe</label>
+                        <a href="#" class="forgot-link">Mot de passe oublié ?</a>
                     </div>
-                    @error('ville')
-                        <small class="error-message">{{ $message }}</small>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="telephone">Téléphone (optionnel)</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-phone input-icon"></i>
-                        <input type="tel" id="telephone" name="telephone" value="{{ old('telephone') }}" placeholder="0612345678">
-                    </div>
-                    @error('telephone')
-                        <small class="error-message">{{ $message }}</small>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
                     <div class="password-input">
                         <div class="input-wrapper">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="password" name="password" placeholder="Créez un mot de passe" required>
+                            <input type="password" id="password" name="password" placeholder="*********" required>
                         </div>
-                        <i class="fas fa-eye-slash toggle-password"></i>
+                        <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
                     </div>
-                    <small class="password-hint">Minimum 8 caractères avec un symbole spécial</small>
                     @error('password')
                         <small class="error-message">{{ $message }}</small>
                     @enderror
                 </div>
 
-                <button type="submit" class="btn-register">
-                    <i class="fas fa-user-plus"></i> Créer mon compte
+                <div class="checkbox-group">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Rester connecté</label>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-arrow-right-to-bracket"></i> Se connecter
                 </button>
 
-                <p class="login-link">
-                    Déjà membre ? <a href="{{ route('login') }}">Connectez-vous</a>
+                <p class="register-link">
+                   Nouveau ici ?
+                    <a href="{{ route('register') }}">Créer un compte</a>
                 </p>
             </form>
         </div>
 
         <div class="hero-side">
-            <div class="featured-content">
-                <div class="featured-badge">
-                    <i class="fas fa-star" style="margin-right: 6px;"></i> ESPÈCES EN VEDETTE
+            <div class="hero-content">
+                <div class="hero-quote">
+                    Le conservateur biologique de l'excellence aviaire.
                 </div>
-                <h2>Tangara émeraude</h2>
-                <div class="quote-wrapper">
-                    <div class="quote">
-                        « À chaque promenade dans la nature, on reçoit bien plus que ce que l'on cherche. »
-                    </div>
+                <div class="hero-description">
+                    Replongez dans notre marché soigneusement sélectionné, où chaque plume et chaque lignée sont célébrées avec le respect qu'elles méritent.
                 </div>
-                <p class="description">
-                    Rejoignez une communauté qui valorise le patrimoine biologique de notre monde.
-                </p>
             </div>
         </div>
     </div>
 
     <script>
-        const togglePassword = document.querySelector('.toggle-password');
-        const passwordInput = document.querySelector('#password');
+  
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
 
         if (togglePassword && passwordInput) {
-            togglePassword.addEventListener('click', function () {
+            togglePassword.addEventListener('click', function() {
+        
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
+          
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });
