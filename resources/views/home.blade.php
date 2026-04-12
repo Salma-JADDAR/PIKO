@@ -266,10 +266,10 @@
         /* Hero Section - SEULE L'IMAGE EST FIXE (effet parallax) */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            overflow: hidden;
+            overflow: visible;
         }
         /* Image de fond fixe */
         .hero-bg {
@@ -300,7 +300,7 @@
             position: relative;
             z-index: 2;
             max-width: 700px;
-            padding: 60px 32px;
+            padding: 80px 32px 60px 32px;
             color: white;
             text-align: left;
             margin-left: 2%;
@@ -337,6 +337,77 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #2d6a4f, #1e4620);
+        }
+
+        /* Search Bar - QUI DEPASSE DE LA HERO SECTION */
+        .search-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -50px;
+            margin-bottom: 0;
+            padding: 0 20px;
+        }
+        .search-card {
+            background: white;
+            border-radius: 60px;
+            padding: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
+        }
+        .search-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 20px;
+            background: #f8faf8;
+            border-radius: 50px;
+            transition: all 0.2s;
+            min-width: 150px;
+        }
+        .search-item:focus-within {
+            background: white;
+            box-shadow: 0 0 0 2px #2d6a4f;
+        }
+        .search-item label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #2d6a4f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .search-item select, .search-item input {
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+            color: #1a1a1a;
+        }
+        .search-item select option {
+            color: #1a1a1a;
+        }
+        .search-btn {
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            color: white;
+            border: none;
+            padding: 0 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+        .search-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(45, 106, 79, 0.4);
         }
 
         /* Container */
@@ -493,8 +564,11 @@
             .nav-links, .auth-actions { display: none; }
             .mobile-menu-btn { display: block; }
             .nav-container { padding: 12px 20px; }
-            .hero-content { margin-left: 5%; padding: 40px 20px; }
+            .hero-content { margin-left: 5%; padding: 60px 20px 40px 20px; }
             .hero-content h1 { font-size: 32px; }
+            .search-card { flex-direction: column; border-radius: 30px; }
+            .search-item { border-radius: 40px; }
+            .search-btn { padding: 14px; }
             .steps-grid, .security-grid, .footer-content { grid-template-columns: 1fr; }
             .container { padding: 40px 20px; }
             .section-title { font-size: 28px; }
@@ -503,10 +577,13 @@
         }
 
         @media (max-width: 480px) {
-            .hero-content { margin-left: 0; padding: 30px 20px; }
+            .hero-content { margin-left: 0; padding: 50px 20px 30px 20px; }
             .hero-content h1 { font-size: 28px; }
             .hero-content p { font-size: 14px; }
             .hero-btn { padding: 10px 24px; font-size: 14px; }
+            .search-wrapper {
+                margin-top: -30px;
+            }
         }
     </style>
 </head>
@@ -588,9 +665,39 @@
         <div class="hero-content">
             <h1>Échangez <br> des oiseaux <br> en toute confiance</h1>
             <p>Découvrez une communauté passionnée et une marketplace <br>sécurisée dédiée aux passionnés d'oiseaux et aux éleveurs certifiés.</p>
-            <a href="{{ route('annonces.create') }}" class="hero-btn">Publier une annonce </a>
+           
         </div>
     </section>
+
+    <!-- Barre de recherche - QUI DEPASSE DE LA HERO SECTION -->
+    <div class="search-wrapper">
+        <form action="{{ route('annonces.index') }}" method="GET" class="search-card">
+            <div class="search-item">
+                <label>ESPÈCE</label>
+                <select name="espece">
+                    <option value="">Toutes les espèces</option>
+                    @foreach($especes ?? [] as $espece)
+                        <option value="{{ $espece->id }}">{{ $espece->nom_commun }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="search-item">
+                <label>PRIX</label>
+                <select name="prix">
+                    <option value="">Tout budget</option>
+                    <option value="0-100">Moins de 100€</option>
+                    <option value="100-500">100€ - 500€</option>
+                    <option value="500-1000">500€ - 1000€</option>
+                    <option value="1000+">1000€+</option>
+                </select>
+            </div>
+            <div class="search-item">
+                <label>LOCALISATION</label>
+                <input type="text" name="ville" placeholder="Ville ou Code Postal">
+            </div>
+            <button type="submit" class="search-btn">Rechercher</button>
+        </form>
+    </div>
 
     <!-- Annonces à la une -->
     <div class="container">
