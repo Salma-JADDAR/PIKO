@@ -9,12 +9,20 @@ class PhotoFactory extends Factory{
     protected $model = Photo::class;
 
     public function definition(): array{
+        $images = [
+            'a1.png',
+            'a2.png',
+            'a3.png',
+        ];
+        
+        $image = $this->faker->randomElement($images);
+        
         return [
-            'nom_fichier' => $this->faker->word() . '.jpg',
-            'chemin_stockage' => 'photos/annonces/' . $this->faker->uuid() . '.jpg',
+            'nom_fichier' => $image,
+            'chemin_stockage' => 'storage/images/' . $image,
             'est_principale' => false,
-            'date_upload' => $this->faker->dateTimeBetween('-1 month', 'now'),
-            'annonce_id' => Annonce::factory(),
+            'date_upload' => now(),
+            // 'annonce_id' => Annonce::factory(), ← À SUPPRIMER
         ];
     }
 

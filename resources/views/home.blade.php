@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Tous vos styles CSS restent identiques */
         * {
             margin: 0;
             padding: 0;
@@ -320,24 +321,6 @@
             opacity: 0.95;
             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
         }
-        .hero-btn {
-            display: inline-block;
-            padding: 14px 36px;
-            background: linear-gradient(135deg, #1e4620, #2d6a4f);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #2d6a4f, #1e4620);
-        }
 
         /* Search Bar - QUI DEPASSE DE LA HERO SECTION */
         .search-wrapper {
@@ -416,74 +399,200 @@
             margin: 0 auto;
             padding: 80px 32px;
         }
-        .section-title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-            text-align: center;
-        }
-        .section-subtitle {
-            color: #6c757d;
+
+        /* ============================================ */
+        /* SECTION ANNONCES À LA UNE - 3 CARTES AVEC IMAGE EN ARRIÈRE-PLAN */
+        /* ============================================ */
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
             margin-bottom: 48px;
-            font-size: 16px;
-            text-align: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+        .featured-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
         }
-        .card {
-            background: white;
+        .featured-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            border-radius: 3px;
+        }
+
+        .featured-subtitle {
+            color: #6c757d;
+            font-size: 16px;
+            margin-top: 16px;
+        }
+
+        .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2d6a4f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            background: #e8f5e9;
+        }
+        .featured-link:hover {
+            background: #2d6a4f;
+            color: white;
+            gap: 12px;
+            transform: translateX(4px);
+        }
+        .featured-link i {
+            transition: transform 0.3s ease;
+        }
+        .featured-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Grille 3 cartes */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        /* Carte avec image en arrière-plan */
+        .featured-card {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             text-decoration: none;
             color: inherit;
             display: block;
+            min-height: 380px;
         }
-        .card:hover {
+        .featured-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
-        .card-img {
-            height: 220px;
-            background: linear-gradient(135deg, #e8ecef, #d4d8dc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+
+        /* Overlay sombre sur l'image */
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 1;
         }
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .card:hover .card-img img { transform: scale(1.05); }
-        .card-img i { font-size: 48px; color: #86a788; }
+
+        /* Badge sur l'image */
         .card-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            color: white;
             font-size: 11px;
             font-weight: 600;
-            padding: 4px 12px;
+            padding: 5px 12px;
             border-radius: 20px;
-            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 3;
         }
-        .badge-verified { background: #e8f5e9; color: #2e7d32; }
-        .badge-featured { background: #fff3e0; color: #e65100; }
-        .card-content { padding: 20px; }
-        .card-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-        .card-price { font-size: 22px; font-weight: 800; color: #2d6a4f; margin: 10px 0; }
-        .card-location { font-size: 13px; color: #6c757d; display: flex; align-items: center; gap: 6px; }
-        .card-tag { display: inline-block; font-size: 11px; background: #f0f2f0; padding: 4px 10px; border-radius: 20px; color: #86a788; margin-top: 10px; }
+        .card-badge i {
+            font-size: 11px;
+        }
+        .card-badge.featured-badge {
+            background: linear-gradient(135deg, #e65100, #ff9800);
+            color: white;
+        }
+
+        /* Corps de la carte - texte par-dessus l'image */
+        .card-body {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+        }
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            color: white;
+        }
+        .card-location {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+        .card-location i {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .card-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 12px;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-tag {
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: white;
+        }
+        .card-views {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .card-views i {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
 
         /* Banner */
         .banner {
@@ -560,7 +669,12 @@
         .footer-col a:hover { color: #86a788; }
         .copyright { text-align: center; padding-top: 48px; margin-top: 48px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; }
 
+        /* Responsive */
         @media (max-width: 900px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
             .nav-links, .auth-actions { display: none; }
             .mobile-menu-btn { display: block; }
             .nav-container { padding: 12px 20px; }
@@ -571,16 +685,30 @@
             .search-btn { padding: 14px; }
             .steps-grid, .security-grid, .footer-content { grid-template-columns: 1fr; }
             .container { padding: 40px 20px; }
-            .section-title { font-size: 28px; }
             .banner h2 { font-size: 28px; }
             .banner { padding: 40px 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .featured-title {
+                font-size: 28px;
+            }
+            .card-price {
+                font-size: 24px;
+            }
         }
 
         @media (max-width: 480px) {
             .hero-content { margin-left: 0; padding: 50px 20px 30px 20px; }
             .hero-content h1 { font-size: 28px; }
             .hero-content p { font-size: 14px; }
-            .hero-btn { padding: 10px 24px; font-size: 14px; }
             .search-wrapper {
                 margin-top: -30px;
             }
@@ -659,17 +787,16 @@
         <div class="mobile-overlay" id="mobileOverlay"></div>
     </header>
 
-    <!-- Hero Section - SEULE L'IMAGE EST FIXE -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
             <h1>Échangez <br> des oiseaux <br> en toute confiance</h1>
             <p>Découvrez une communauté passionnée et une marketplace <br>sécurisée dédiée aux passionnés d'oiseaux et aux éleveurs certifiés.</p>
-           
         </div>
     </section>
 
-    <!-- Barre de recherche - QUI DEPASSE DE LA HERO SECTION -->
+    <!-- Search Bar -->
     <div class="search-wrapper">
         <form action="{{ route('annonces.index') }}" method="GET" class="search-card">
             <div class="search-item">
@@ -699,34 +826,90 @@
         </form>
     </div>
 
-    <!-- Annonces à la une -->
+    <!-- Annonces à la une - Version corrigée avec images -->
     <div class="container">
-        <h2 class="section-title">Annonces à la une</h2>
-        <p class="section-subtitle">Les plus beaux spécimens sélectionnés pour vous</p>
-        <div class="cards-grid">
+        <div class="featured-header">
+            <div>
+                <h2 class="featured-title">Annonces à la une</h2>
+                <p class="featured-subtitle">Les plus beaux spécimens sélectionnés pour vous</p>
+            </div>
+            <a href="{{ route('annonces.index') }}" class="featured-link">
+                Voir tout 
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="featured-grid">
             @forelse($annoncesUne ?? [] as $annonce)
-                <a href="{{ route('annonces.show', $annonce->id) }}" class="card">
-                    <div class="card-img">
-                        @if($annonce->getPhotoPrincipale())
-                            <img src="{{ asset('storage/' . $annonce->getPhotoPrincipale()->chemin_stockage) }}" alt="{{ $annonce->titre }}">
-                        @else
-                            <i class="fas fa-dove"></i>
-                        @endif
-                        @if($annonce->utilisateur && $annonce->utilisateur->estVerifie())
-                            <span class="card-badge badge-verified"><i class="fas fa-check-circle"></i> Éleveur Vérifié</span>
-                        @endif
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">{{ $annonce->titre }}</div>
+                @php
+                    $photo = $annonce->getPhotoPrincipale();
+                    if ($photo) {
+                        $imageUrl = asset('storage/' . $photo->chemin_stockage);
+                        $imageUrl = str_replace('storage/storage/', 'storage/', $imageUrl);
+                    } else {
+                        $imageUrl = asset('images/default.jpg');
+                    }
+                @endphp
+                <a href="{{ route('annonces.show', $annonce->id) }}" class="featured-card" style="background-image: url('{{ $imageUrl }}');">
+                    @if($annonce->utilisateur && $annonce->utilisateur->estVerifie())
+                        <div class="card-badge">
+                            <i class="fas fa-check-circle"></i> Éleveur Vérifié
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        <h3 class="card-title">{{ $annonce->titre }}</h3>
+                        <div class="card-location">
+                            <i class="fas fa-map-marker-alt"></i> {{ $annonce->utilisateur->ville ?? 'France' }}
+                        </div>
                         <div class="card-price">{{ number_format($annonce->prix, 0, ',', ' ') }}€</div>
-                        <div class="card-location"><i class="fas fa-map-marker-alt"></i> {{ $annonce->utilisateur->ville ?? 'Non spécifiée' }}</div>
-                        @if($annonce->etat == 'vendue')
-                            <span class="card-tag">VENDU</span>
-                        @endif
+                        <div class="card-footer">
+                            @if($annonce->etat == 'vendue')
+                                <span class="card-tag">VENDU</span>
+                            @else
+                                <span class="card-tag">NÉGOCIABLE</span>
+                            @endif
+                            <span class="card-views"><i class="fas fa-eye"></i> {{ $annonce->nb_vues ?? 0 }}</span>
+                        </div>
                     </div>
                 </a>
             @empty
-                <p style="text-align: center;">Aucune annonce à la une pour le moment.</p>
+                <!-- Cartes par défaut -->
+                <a href="#" class="featured-card" style="background-image: url('{{ asset('images/a1.png') }}');">
+                    <div class="card-badge"><i class="fas fa-check-circle"></i> Éleveur Vérifié</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Gris du Gabon</h3>
+                        <div class="card-location"><i class="fas fa-map-marker-alt"></i> Lyon, France</div>
+                        <div class="card-price">850€</div>
+                        <div class="card-footer">
+                            <span class="card-tag">NÉGOCIABLE</span>
+                            <span class="card-views"><i class="fas fa-eye"></i> 245</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="featured-card" style="background-image: url('{{ asset('images/a2.png') }}');">
+                    <div class="card-badge"><i class="fas fa-check-circle"></i> Couple</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Couple Inséparables</h3>
+                        <div class="card-location"><i class="fas fa-map-marker-alt"></i> Bordeaux, France</div>
+                        <div class="card-price">120€</div>
+                        <div class="card-footer">
+                            <span class="card-tag">PROMO</span>
+                            <span class="card-views"><i class="fas fa-eye"></i> 189</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="featured-card" style="background-image: url('{{ asset('images/a3.png') }}');">
+                    <div class="card-badge featured-badge"><i class="fas fa-star"></i> À la une</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ara Bleu et Or</h3>
+                        <div class="card-location"><i class="fas fa-map-marker-alt"></i> Nice, France</div>
+                        <div class="card-price">1,200€</div>
+                        <div class="card-footer">
+                            <span class="card-tag">RARE</span>
+                            <span class="card-views"><i class="fas fa-eye"></i> 567</span>
+                        </div>
+                    </div>
+                </a>
             @endforelse
         </div>
     </div>
@@ -740,7 +923,7 @@
         </div>
     </div>
 
-    <!-- Section Comment ça marche (visible uniquement pour non connecté) -->
+    <!-- Section Comment ça marche -->
     @guest
         <div id="comment-ca-marche" class="container">
             <h2 class="section-title">Comment ça marche ?</h2>
