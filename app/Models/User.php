@@ -122,20 +122,16 @@ public function mettreAJourStatutVerifie(): void{
     }
     }
 
-/**
- * Diminuer le score de confiance
- */
-public function diminuerConfiance(int $points): void
-{
-    $this->score_confiance = max(0, $this->score_confiance - $points);
-    $this->save();
+    public function diminuerConfiance(int $points): void{
+       $this->score_confiance = max(0, $this->score_confiance - $points);
+       $this->save();
     
-    // Si le score descend en dessous de 70, repasser en standard
+    
     if ($this->score_confiance < 70 && $this->role === 'verifie') {
         $this->role = 'standard';
         $this->save();
     }
-}
+    }
 
 /**
  * Vérifier si l'utilisateur est suspendu
