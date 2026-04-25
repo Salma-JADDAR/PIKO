@@ -133,12 +133,9 @@ public function mettreAJourStatutVerifie(): void{
     }
     }
 
-/**
- * Vérifier si l'utilisateur est suspendu
- */
-public function estSuspendu(): bool
-{
-    return $this->est_suspendu == true;
-}
+
+    public function estSuspendu(): bool{
+        return $this->est_suspendu == true;
+    }
 
 }
