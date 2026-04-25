@@ -22,7 +22,7 @@ class PhotoFactory extends Factory{
             'chemin_stockage' => 'storage/images/' . $image,
             'est_principale' => false,
             'date_upload' => now(),
-            // 'annonce_id' => Annonce::factory(), ← À SUPPRIMER
+          
         ];
     }
 
