@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\User;
 use App\Models\Espece;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReponseAcheteurMail;
 
+/**
+ * @property-read User $user
+ */
 
 class AnnonceController extends Controller
 {
@@ -79,11 +83,23 @@ class AnnonceController extends Controller
         return view('annonces.index', compact('annonces', 'especesList', 'totalCount', 'publishedCount', 'soldCount'));
     }
     
-    public function create()
-    {
-        $especes = Espece::where('est_active', true)->get();
-        return view('annonces.create', compact('especes'));
+ public function create()
+{
+    $user = Auth::user();
+    
+    // تحقق من وجود المستخدم
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Veuillez vous connecter.');
     }
+    
+    if (!$user->peutPublier()) {
+        return redirect()->route('mes-annonces')
+            ->with('error', 'Vous avez atteint votre limite d\'annonces.');
+    }
+    
+    $especes = Espece::where('est_active', true)->get();
+    return view('annonces.create', compact('especes'));
+}
     
     public function store(Request $request)
     {
