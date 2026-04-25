@@ -13,20 +13,36 @@ class AuthController extends Controller{
         return view('auth.login');
     }
     
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+    
+    if (Auth::attempt($credentials, $request->has('remember'))) {
+        $user = Auth::user();
         
-        if (Auth::attempt($credentials, $request->has('remember'))) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+        // 🔥 Vérifier si l'utilisateur est suspendu
+        if ($user->est_suspendu) {
+            Auth::logout();
+            return back()->withErrors([
+                'email' => '⚠️ Votre compte est suspendu. Veuillez contacter le support.'
+            ]);
         }
         
-        return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);
+        $request->session()->regenerate();
+        
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        
+        return redirect()->intended('/');
     }
     
+    return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);
+}
+      
     
     public function afficherregistre(){
         return view('auth.register');

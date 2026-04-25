@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piko · À propos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Piko · À propos - La référence aviaire en Europe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,8 +15,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f5f7f5;
-            color: #1a1a1a;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         /* Header Premium */
@@ -28,6 +37,7 @@
             top: 0;
             z-index: 1000;
         }
+
         .nav-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -37,7 +47,10 @@
             align-items: center;
             gap: 32px;
         }
-        .logo a { text-decoration: none; }
+
+        .logo a {
+            text-decoration: none;
+        }
         .logo h1 {
             font-size: 28px;
             font-weight: 800;
@@ -45,7 +58,9 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.5px;
         }
+
         .nav-links {
             display: flex;
             gap: 32px;
@@ -55,12 +70,20 @@
         }
         .nav-links a {
             text-decoration: none;
-            color: #4a5568;
+            color: #475569;
             font-weight: 500;
             font-size: 15px;
             transition: color 0.3s ease;
         }
-        .nav-links a:hover, .nav-links a.active { color: #2d6a4f; }
+        .nav-links a:hover, .nav-links a.active {
+            color: #2d6a4f;
+        }
+
+        .auth-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
         .btn-login {
             padding: 8px 24px;
             border: 1.5px solid #2d6a4f;
@@ -72,7 +95,11 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        .btn-login:hover { background: #2d6a4f; color: white; transform: translateY(-2px); }
+        .btn-login:hover {
+            background: #2d6a4f;
+            color: white;
+            transform: translateY(-2px);
+        }
         .btn-register {
             padding: 8px 24px;
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
@@ -83,11 +110,18 @@
             font-size: 14px;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
         }
-        .btn-register:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3); }
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 106, 79, 0.35);
+        }
 
         /* User Menu */
-        .user-menu { position: relative; cursor: pointer; }
+        .user-menu {
+            position: relative;
+            cursor: pointer;
+        }
         .user-avatar {
             display: flex;
             align-items: center;
@@ -95,11 +129,27 @@
             padding: 8px 16px;
             background: #e8f0e6;
             border-radius: 40px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        .user-avatar i { color: #2d6a4f; }
-        .user-avatar span { font-size: 14px; font-weight: 500; color: #2d6a4f; }
-        .user-menu:hover .user-avatar { background: #d4e4d0; }
+        .user-avatar i {
+            font-size: 16px;
+            color: #2d6a4f;
+        }
+        .user-avatar span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2d6a4f;
+        }
+        .user-avatar i:last-child {
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+        .user-menu:hover .user-avatar {
+            background: #d4e4d0;
+        }
+        .user-menu:hover .user-avatar i:last-child {
+            transform: rotate(180deg);
+        }
         .user-dropdown {
             position: absolute;
             top: 100%;
@@ -112,10 +162,14 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             z-index: 100;
         }
-        .user-menu:hover .user-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .user-menu:hover .user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
         .user-dropdown a {
             display: flex;
             align-items: center;
@@ -124,13 +178,31 @@
             text-decoration: none;
             color: #4a5568;
             font-size: 13px;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
-        .user-dropdown a:hover { background: #e8f0e6; color: #2d6a4f; }
-        .user-dropdown hr { margin: 8px 0; border-top: 1px solid #eef2f0; }
+        .user-dropdown a:hover {
+            background: #e8f0e6;
+            color: #2d6a4f;
+        }
+        .user-dropdown a i {
+            width: 18px;
+            color: #86a788;
+        }
+        .user-dropdown hr {
+            margin: 8px 0;
+            border: none;
+            border-top: 1px solid #eef2f0;
+        }
 
         /* Mobile */
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; color: #2d6a4f; cursor: pointer; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -139,20 +211,54 @@
             max-width: 350px;
             height: 100%;
             background: white;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
             z-index: 1001;
-            transition: right 0.3s;
+            transition: right 0.3s ease;
             overflow-y: auto;
         }
         .mobile-menu.active { right: 0; }
-        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eef2f0; }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eef2f0;
+        }
         .mobile-menu-header .logo h1 { font-size: 24px; }
-        .mobile-menu-close { background: none; border: none; font-size: 24px; color: #2d6a4f; cursor: pointer; }
-        .mobile-menu-content { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        .mobile-nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: #4a5568; border-radius: 12px; transition: background 0.2s; }
-        .mobile-nav-item:hover { background: #e8f0e6; color: #2d6a4f; }
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
+        .mobile-menu-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 15px;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+        .mobile-nav-item:hover {
+            background: #e8f0e6;
+            color: #2d6a4f;
+        }
         .mobile-nav-item i { width: 24px; color: #86a788; }
-        .btn-mobile-primary { background: linear-gradient(135deg, #1e4620, #2d6a4f); color: white !important; justify-content: center; }
+        .btn-mobile-primary {
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            color: white !important;
+            justify-content: center;
+        }
         .btn-mobile-primary i { color: white !important; }
         .mobile-menu hr { margin: 8px 0; border-top: 1px solid #eef2f0; }
         .mobile-overlay {
@@ -167,119 +273,58 @@
         }
         .mobile-overlay.active { display: block; }
 
-        @media (max-width: 900px) {
-            .nav-links, .auth-actions { display: none; }
-            .mobile-menu-btn { display: block; }
-            .nav-container { padding: 12px 20px; }
-        }
-
-        /* Hero Section avec image */
-        .hero-about {
-            background: linear-gradient(135deg, #e8f0e6 0%, #d4e4d0 100%);
-            padding: 80px 24px;
-            text-align: center;
+        /* Hero Section - IDENTIQUE À LA PAGE D'ACCUEIL (sans barre de recherche) */
+        .hero {
             position: relative;
-            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            overflow: visible;
         }
-        .hero-about::before {
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('{{ asset("images/apa.PNG") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .hero-bg::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1920&h=500&fit=crop') center/cover;
-            opacity: 0.15;
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
         }
-        .hero-about h1 {
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            padding: 80px 32px 60px 32px;
+            color: white;
+            text-align: left;
+            margin-left: 2%;
+        }
+        .hero-content h1 {
             font-size: 56px;
             font-weight: 800;
-            color: #1a1a1a;
             margin-bottom: 20px;
             letter-spacing: -1px;
-            position: relative;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         }
-        .hero-about p {
+        .hero-content p {
             font-size: 18px;
-            color: #4a5b4d;
-            max-width: 700px;
-            margin: 0 auto;
             line-height: 1.6;
-            position: relative;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: white;
-            padding: 60px 32px;
-            margin-top: -40px;
-            position: relative;
-            z-index: 2;
-        }
-        .stats-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-        .stat-card {
-            background: white;
-            padding: 24px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-number {
-            font-size: 42px;
-            font-weight: 800;
-            color: #2d6a4f;
-            margin-bottom: 8px;
-        }
-        .stat-label {
-            font-size: 14px;
-            color: #6c757d;
-            font-weight: 500;
-        }
-
-        /* Mission Section avec image */
-        .mission-section {
-            background: #1a2e1a;
-            color: white;
-            padding: 80px 32px;
-            position: relative;
-            overflow: hidden;
-        }
-        .mission-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=1920&h=600&fit=crop') center/cover;
-            opacity: 0.1;
-            pointer-events: none;
-        }
-        .mission-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        .mission-content h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .mission-content p {
-            font-size: 16px;
-            line-height: 1.7;
-            opacity: 0.9;
+            margin-bottom: 32px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* Container */
@@ -288,118 +333,337 @@
             margin: 0 auto;
             padding: 80px 32px;
         }
-        .section-title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 16px;
+
+        /* Style centré pour tous les titres de sections */
+        .section-header-center {
             text-align: center;
-            letter-spacing: -0.5px;
-        }
-        .section-subtitle {
-            color: #6c757d;
-            margin-bottom: 48px;
-            font-size: 16px;
-            text-align: center;
+            margin-bottom: 60px;
         }
 
-        /* Conseils Grid avec images */
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        .tip-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-        .tip-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .tip-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        .tip-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .tip-card:hover .tip-image img {
-            transform: scale(1.05);
-        }
-        .tip-icon {
-            height: 100px;
-            background: linear-gradient(135deg, #e8f0e6, #d4e4d0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: #2d6a4f;
-        }
-        .tip-content { padding: 28px; }
-        .tip-content h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .tip-content p {
-            color: #6c757d;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        .tip-content ul {
-            padding-left: 20px;
-            color: #6c757d;
-            line-height: 1.8;
-        }
-        .tip-content li { margin-bottom: 8px; }
-
-        /* CTA Section avec image */
-        .cta-section {
-            background: linear-gradient(135deg, #e8f0e6, #c8dcc4);
-            border-radius: 40px;
-            margin: 40px 32px;
-            padding: 60px;
-            text-align: center;
+        .section-title-center {
+            font-size: 42px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
             position: relative;
-            overflow: hidden;
+            display: inline-block;
         }
-        .cta-section::before {
+
+        .section-title-center::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            border-radius: 4px;
+        }
+
+        .section-subtitle-center {
+            color: #64748b;
+            font-size: 18px;
+            margin-top: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Section Premium - Cartes avec images de fond */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-card {
+            position: relative;
+            padding: 40px 24px;
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            color: white;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .stat-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=1200&h=400&fit=crop') center/cover;
-            opacity: 0.1;
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+            z-index: 1;
+            border-radius: 28px;
         }
-        .cta-section h3 {
-            font-size: 32px;
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+        .stat-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        .stat-number {
+            font-size: 52px;
+            font-weight: 800;
+            color: #ffd966;
+            margin-bottom: 12px;
+        }
+        .stat-label {
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Valeurs Section - Cartes avec images de fond */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .value-card {
+            position: relative;
+            border-radius: 28px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            color: white;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.75));
+            z-index: 1;
+            border-radius: 28px;
+        }
+        .value-card:hover {
+            transform: translateY(-8px);
+        }
+        .value-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+            color: #ffd966;
+        }
+        .value-card h3 {
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 16px;
+        }
+        .value-card p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        /* Témoignages Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+        .testimonial-quote {
+            font-size: 48px;
+            color: #2d6a4f;
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: Georgia, serif;
+        }
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 24px;
+            font-style: italic;
+            min-height: 100px;
+        }
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #eef2f0;
+        }
+        .testimonial-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e8f0e6;
+        }
+        .testimonial-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .testimonial-info p {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .testimonial-rating {
+            color: #fbbf24;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        .team-card p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 8px 0 20px;
+        }
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding-bottom: 24px;
+        }
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            background: #e8f0e6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d6a4f;
+            transition: all 0.3s;
+        }
+        .team-social a:hover {
+            background: #2d6a4f;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            border-radius: 48px;
+            text-align: center;
+            padding: 70px 60px;
+            margin: 40px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-section h3 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
             position: relative;
         }
         .cta-section p {
-            font-size: 16px;
-            color: #4a5b4d;
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
             margin-bottom: 32px;
             position: relative;
         }
         .cta-section .btn-register {
-            position: relative;
+            display: inline-block;
+            background: white;
+            color: #2d6a4f;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 14px 32px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .cta-section .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
         /* Footer Premium */
         .footer {
             background: #0a1a0a;
-            color: #a0b0a0;
+            color: #94a3b8;
             padding: 60px 32px 32px;
         }
         .footer-content {
@@ -425,13 +689,15 @@
         }
         .footer-col a {
             display: block;
-            color: #a0b0a0;
+            color: #94a3b8;
             text-decoration: none;
             font-size: 13px;
             margin-bottom: 14px;
             transition: color 0.2s;
         }
-        .footer-col a:hover { color: #86a788; }
+        .footer-col a:hover {
+            color: #86a788;
+        }
         .copyright {
             text-align: center;
             padding-top: 48px;
@@ -440,19 +706,36 @@
             font-size: 12px;
         }
 
-        @media (max-width: 768px) {
-            .hero-about h1 { font-size: 32px; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links, .auth-actions { display: none; }
+            .mobile-menu-btn { display: block; }
+            .nav-container { padding: 12px 20px; }
+            .hero-content { margin-left: 5%; padding: 60px 20px 40px 20px; }
+            .hero-content h1 { font-size: 32px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .tips-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-            .container { padding: 40px 20px; }
-            .section-title { font-size: 28px; }
-            .cta-section { margin: 20px; padding: 40px 20px; }
-            .cta-section h3 { font-size: 24px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+            .container { padding: 50px 20px; }
+            .section-title-center { font-size: 32px; }
+            .cta-section { margin: 20px; padding: 50px 30px; }
+            .cta-section h3 { font-size: 28px; }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 28px; }
+            .hero-content p { font-size: 14px; }
+            .section-title-center { font-size: 28px; }
+            .section-subtitle-center { font-size: 14px; }
+            .testimonial-text { min-height: auto; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: 1fr; }
+            .hero-content { margin-left: 0; padding: 50px 20px 30px 20px; }
         }
     </style>
 </head>
@@ -474,11 +757,16 @@
             <div class="auth-actions">
                 @auth
                     <div class="user-menu">
-                        <div class="user-avatar">
-                            <i class="fas fa-user-circle"></i>
-                            <span>{{ Auth::user()->prenom }}</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                     <div class="user-avatar">
+    <i class="fas fa-user-circle"></i>
+    <span>{{ Auth::user()->prenom }}</span>
+    @if(Auth::user()->role === 'verifie')
+        <span class="verified-badge-header" style="background: #2d6a4f; color: white; padding: 2px 8px; border-radius: 20px; font-size: 10px; margin-left: 5px;">
+            <i class="fas fa-check-circle"></i> Vérifié
+        </span>
+    @endif
+    <i class="fas fa-chevron-down"></i>
+</div>
                         <div class="user-dropdown">
                             <a href="{{ route('profile.show') }}"><i class="fas fa-user-cog"></i> Mon profil</a>
                             <a href="{{ route('mes-annonces') }}"><i class="fas fa-list"></i> Mes annonces</a>
@@ -522,164 +810,173 @@
         <div class="mobile-overlay" id="mobileOverlay"></div>
     </header>
 
-    <!-- Hero Section avec image -->
-    <section class="hero-about">
-        <h1>À propos de Piko</h1>
-        <p>Nous sommes une communauté dédiée aux passionnés d'oiseaux, engagée pour le bien-être animal et l'adoption responsable.</p>
+    <!-- Hero Section - IDENTIQUE À LA PAGE D'ACCUEIL (sans barre de recherche) -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>À propos <br> de Piko</h1>
+            <p>Nous sommes une communauté dédiée aux passionnés d'oiseaux, engagée pour le bien-être animal et l'adoption responsable.</p>
+        </div>
     </section>
 
-    <!-- Stats Section -->
-    <div class="stats-section">
+    <!-- Stats Section - Cartes avec images de fond -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Notre impact</h2>
+            <p class="section-subtitle-center">Une communauté qui grandit chaque jour</p>
+        </div>
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card" style="background-image: url('{{ asset("images/i1.PNG") }}'); background-size: cover; background-position: center;">
                 <div class="stat-number">1500+</div>
                 <div class="stat-label">Annonces publiées</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="background-image: url('{{ asset("images/i2.PNG") }}'); background-size: cover; background-position: center;">
                 <div class="stat-number">500+</div>
                 <div class="stat-label">Éleveurs vérifiés</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="background-image: url('{{ asset("images/i4.PNG") }}'); background-size: cover; background-position: center;">
                 <div class="stat-number">50+</div>
                 <div class="stat-label">Espèces disponibles</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" style="background-image: url('{{ asset("images/i3.PNG") }}'); background-size: cover; background-position: center;">
                 <div class="stat-number">98%</div>
                 <div class="stat-label">Satisfaction client</div>
             </div>
         </div>
     </div>
 
-    <!-- Mission Section avec image -->
-    <section class="mission-section">
-        <div class="mission-content">
-            <h2>Notre mission</h2>
-            <p>Chez Piko, nous croyons que chaque oiseau mérite un foyer aimant. Notre plateforme connecte des éleveurs responsables avec des passionnés d'oiseaux, en garantissant des transactions sécurisées et le respect des espèces protégées. Nous nous engageons à lutter contre le trafic d'animaux et à promouvoir une éthique irréprochable dans le monde de l'ornithologie.</p>
+    <!-- Valeurs Section - Cartes avec images de fond -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Nos valeurs</h2>
+            <p class="section-subtitle-center">Ce qui nous guide au quotidien</p>
         </div>
-    </section>
+        <div class="values-grid">
+            <div class="value-card" style="background-image: url('{{ asset("images/bien.PNG") }}'); background-size: cover; background-position: center;">
+                <div class="value-icon"><i class="fas fa-heart"></i></div>
+                <h3>Bien-être animal</h3>
+                <p>La santé et le bonheur des oiseaux sont au cœur de toutes nos actions.</p>
+            </div>
+            <div class="value-card" style="background-image: url('{{ asset("images/trans.PNG") }}'); background-size: cover; background-position: center;">
+                <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Transparence</h3>
+                <p>Des transactions claires et sécurisées pour une confiance totale.</p>
+            </div>
+            <div class="value-card" style="background-image: url('{{ asset("images/comm.PNG") }}'); background-size: cover; background-position: center;">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h3>Communauté</h3>
+                <p>Une famille de passionnés qui partagent les mêmes valeurs.</p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Conseils Section avec images -->
-    <div class="container">
-        <h2 class="section-title">Conseils pour bien élever vos oiseaux</h2>
-        <p class="section-subtitle">Des guides pratiques pour prendre soin de vos compagnons à plumes</p>
-        <div class="tips-grid">
-            <!-- Alimentation -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&h=200&fit=crop" alt="Alimentation oiseau">
-                </div>
-                <div class="tip-content">
-                    <h3>🍎 Alimentation équilibrée</h3>
-                    <p>Une bonne alimentation est essentielle pour la santé de votre oiseau.</p>
-                    <ul>
-                        <li>Graines de qualité (mélange adapté à l'espèce)</li>
-                        <li>Fruits et légumes frais (pomme, carotte, épinards)</li>
-                        <li>Supplements calciques (os de seiche, pierre minérale)</li>
-                        <li>Eau fraîche changée quotidiennement</li>
-                        <li>Éviter l'avocat, le chocolat et la caféine</li>
-                    </ul>
+    <!-- Témoignages Section -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Ils nous font confiance</h2>
+            <p class="section-subtitle-center">Ce que nos utilisateurs pensent de Piko</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">"Grâce à Piko, j'ai trouvé un magnifique perroquet gris du Gabon. Le processus était simple et sécurisé. Je recommande vivement cette plateforme à tous les passionnés d'oiseaux !"</p>
+                <div class="testimonial-user">
+                    <img src="{{ asset('images/so.PNG') }}" alt="Sophie" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Sophie Martinez</h4>
+                        <p>Paris, France</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Habitat -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&h=200&fit=crop" alt="Cage oiseau">
-                </div>
-                <div class="tip-content">
-                    <h3>🏠 Habitat et cage</h3>
-                    <p>Un environnement adapté pour le bien-être de votre compagnon.</p>
-                    <ul>
-                        <li>Cage spacieuse (minimum 50x50x70cm pour une perruche)</li>
-                        <li>Barreaux horizontaux pour faciliter l'escalade</li>
-                        <li>Perchoirs de différents diamètres</li>
-                        <li>Jouets pour stimuler l'intelligence</li>
-                        <li>Nettoyage hebdomadaire complet</li>
-                    </ul>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">"Éleveur professionnel depuis 10 ans, Piko m'a permis de développer ma clientèle et de trouver des familles aimantes pour mes oiseaux. Une plateforme de confiance !"</p>
+                <div class="testimonial-user">
+                    <img src="{{ asset('images/d.PNG') }}" alt="David" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>David Rousseau</h4>
+                        <p>Lyon, France</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Soins -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1624645838715-6edc94c7b9cf?w=400&h=200&fit=crop" alt="Vétérinaire oiseau">
-                </div>
-                <div class="tip-content">
-                    <h3>🩺 Soins vétérinaires</h3>
-                    <p>Prévenir plutôt que guérir.</p>
-                    <ul>
-                        <li>Visite annuelle chez un vétérinaire aviaire</li>
-                        <li>Surveiller les signes de maladie</li>
-                        <li>Coupe des griffes et du bec si nécessaire</li>
-                        <li>Vaccinations recommandées</li>
-                        <li>Vermifugation régulière</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Socialisation -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=200&fit=crop" alt="Socialisation oiseau">
-                </div>
-                <div class="tip-content">
-                    <h3>🤝 Socialisation</h3>
-                    <p>Les oiseaux sont des animaux sociaux.</p>
-                    <ul>
-                        <li>Passer du temps quotidien avec votre oiseau</li>
-                        <li>Parler doucement pour créer un lien de confiance</li>
-                        <li>Proposer des sorties hors cage sécurisées</li>
-                        <li>Éviter les gestes brusques</li>
-                        <li>Un deuxième oiseau peut être bénéfique</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Espèces protégées -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=200&fit=crop" alt="Espèces protégées">
-                </div>
-                <div class="tip-content">
-                    <h3>⚠️ Espèces protégées CITES</h3>
-                    <p>Certaines espèces sont protégées par la loi.</p>
-                    <ul>
-                        <li>Vérifier la provenance avant l'achat</li>
-                        <li>Demander un certificat de capacité</li>
-                        <li>Ne jamais acheter une espèce braconnée</li>
-                        <li>Signaler tout trafic aux autorités</li>
-                        <li>Privilégier les éleveurs certifiés</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Reproduction -->
-            <div class="tip-card">
-                <div class="tip-image">
-                    <img src="https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&h=200&fit=crop" alt="Reproduction oiseaux">
-                </div>
-                <div class="tip-content">
-                    <h3>🥚 Reproduction responsable</h3>
-                    <p>La reproduction nécessite des connaissances.</p>
-                    <ul>
-                        <li>Ne reproduire que des oiseaux en bonne santé</li>
-                        <li>Fournir un nichoir adapté</li>
-                        <li>Alimentation enrichie pendant la période de reproduction</li>
-                        <li>Limiter à 2-3 portées par an maximum</li>
-                        <li>Préparer l'arrivée des bébés</li>
-                    </ul>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">"J'ai adopté deux inséparables via Piko. L'équipe est très réactive et les éleveurs sont sérieux. Une belle découverte qui m'a permis d'agrandir ma famille."</p>
+                <div class="testimonial-user">
+                    <img src="{{ asset('images/ju.PNG') }}" alt="Julie" class="testimonial-avatar">
+                    <div class="testimonial-info">
+                        <h4>Julie Lambert</h4>
+                        <p>Bordeaux, France</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CTA Section avec image -->
-    <div class="cta-section">
-        <h3>Prêt à rejoindre l'aventure ?</h3>
-        <p>Découvrez des annonces vérifiées et trouvez votre compagnon idéal.</p>
-        <a href="{{ route('annonces.index') }}" class="btn-register" style="display: inline-block;">Explorer les annonces</a>
+    <!-- Team Section -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Notre équipe</h2>
+            <p class="section-subtitle-center">Des passionnés à votre service</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{{ asset('images/sph.PNG') }}" alt="Fondatrice">
+                </div>
+                <h4>Sophie Martin</h4>
+                <p>Fondatrice & CEO</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{{ asset('images/th.PNG') }}" alt="Directeur">
+                </div>
+                <h4>Thomas Bernard</h4>
+                <p>Directeur des opérations</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{{ asset('images/m.PNG') }}" alt="Responsable">
+                </div>
+                <h4>Marie Dubois</h4>
+                <p>Responsable bien-être animal</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{{ asset('images/l.PNG') }}" alt="Technique">
+                </div>
+                <h4>Lucas Petit</h4>
+                <p>Lead développeur</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
 
+ 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">

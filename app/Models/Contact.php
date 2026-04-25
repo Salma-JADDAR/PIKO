@@ -15,10 +15,14 @@ class Contact extends Model{
         'annonce_id',
         'expediteur_id',
         'destinataire_id',
+        'reponse_envoyee',    
+        'date_reponse',
     ];
 
     protected $casts = [
         'date_envoi' => 'datetime',
+         'date_reponse' => 'datetime', 
+        'reponse_envoyee' => 'boolean'
     ];
 
     public function annonce(){

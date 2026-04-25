@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Piko · Connexion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -286,22 +286,95 @@
             text-align: left;
         }
 
+        /* ========== MEDIA QUERIES RESPONSIVES CORRIGÉES ========== */
         @media (max-width: 900px) {
-            .login-container { flex-direction: column; max-width: 550px; }
-            .form-side { width: 100%; padding: 32px 28px; }
-            .hero-side { width: 100%; min-height: 300px; }
-            .hero-content { padding: 40px 30px; }
-            .hero-quote { font-size: 20px; }
-            .hero-description { font-size: 13px; max-width: 100%; }
+            .login-container { 
+                flex-direction: column; 
+                max-width: 550px; 
+            }
+            .form-side { 
+                width: 100%; 
+                padding: 32px 28px; 
+            }
+            .hero-side { 
+                width: 100%; 
+                min-height: 280px; /* hauteur adaptée */
+            }
+            /* Correction du positionnement vertical du texte dans le héros */
+            .hero-content {
+                top: auto;
+                transform: none;
+                padding: 30px 28px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: auto;
+            }
+            .hero-quote { 
+                font-size: 22px; 
+                margin-bottom: 12px;
+            }
+            .hero-description { 
+                font-size: 13px; 
+                max-width: 100%; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+            .form-side {
+                padding: 24px 20px;
+            }
+            .form-header h2 {
+                font-size: 24px;
+            }
+            .form-header p {
+                font-size: 13px;
+                margin-bottom: 24px;
+            }
+            .hero-side {
+                min-height: 260px;
+            }
+            .hero-content {
+                padding: 24px 20px;
+            }
+            .hero-quote {
+                font-size: 20px;
+            }
+            .hero-description {
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 480px) {
-            .form-side { padding: 24px 20px; }
-            .form-header h2 { font-size: 26px; }
-            .hero-side { min-height: 280px; }
-            .hero-content { padding: 30px 24px; }
-            .hero-quote { font-size: 18px; }
-            .hero-description { font-size: 12px; }
+            .form-side {
+                padding: 20px 16px;
+            }
+            .form-header h2 {
+                font-size: 22px;
+            }
+            .hero-side {
+                min-height: 240px;
+            }
+            .hero-content {
+                padding: 20px 16px;
+            }
+            .hero-quote {
+                font-size: 18px;
+            }
+            .hero-description {
+                font-size: 11px;
+            }
+            .checkbox-group label {
+                font-size: 12px;
+            }
+            .btn-login {
+                font-size: 14px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -378,16 +451,13 @@
     </div>
 
     <script>
-  
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
         if (togglePassword && passwordInput) {
             togglePassword.addEventListener('click', function() {
-        
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-          
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });

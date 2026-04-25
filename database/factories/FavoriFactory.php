@@ -7,7 +7,7 @@ use App\Models\Annonce;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FavoriFactory extends Factory{
-    protected $model = Favori::class;
+
 
     public function definition(): array{
         return [

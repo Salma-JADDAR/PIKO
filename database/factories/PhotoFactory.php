@@ -6,7 +6,7 @@ use App\Models\Annonce;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PhotoFactory extends Factory{
-    protected $model = Photo::class;
+
 
     public function definition(): array{
         $images = [

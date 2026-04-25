@@ -18,6 +18,9 @@ class User extends Authenticatable{
         'telephone',
         'score_confiance',
         'role',
+        'est_suspendu',
+        'suspendu_le',
+        'raison_suspension',
        
     ];
 
@@ -29,7 +32,19 @@ class User extends Authenticatable{
        'score_confiance' => 'integer',
     ];
 
- 
+      protected static function booted()
+    {
+        static::saving(function ($user) {
+            // Si le score change, mettre à jour le rôle automatiquement
+            if ($user->isDirty('score_confiance')) {
+                if ($user->score_confiance >= 70 && $user->role === 'standard') {
+                    $user->role = 'verifie';
+                } elseif ($user->score_confiance < 70 && $user->role === 'verifie') {
+                    $user->role = 'standard';
+                }
+            }
+        });
+    }
     public function estStandard(): bool{
         return $this->role === 'standard';
     }
@@ -114,5 +129,45 @@ public function peutAjouterFavori(): bool{
         return $this->favoris()->get();
     }
 
+    /**
+ * Augmenter le score de confiance
+ */
+/**
+ * Augmenter le score de confiance
+ */
+public function augmenterConfiance(int $points): void
+{
+    $this->score_confiance = min(100, $this->score_confiance + $points);
+    $this->save();
+    
+    // 🔥 VÉRIFIER SI L'UTILISATEUR DEVIENT VÉRIFIÉ
+    if ($this->score_confiance >= 70 && $this->role === 'standard') {
+        $this->role = 'verifie';
+        $this->save();
+    }
+}
+
+/**
+ * Diminuer le score de confiance
+ */
+public function diminuerConfiance(int $points): void
+{
+    $this->score_confiance = max(0, $this->score_confiance - $points);
+    $this->save();
+    
+    // Si le score descend en dessous de 70, repasser en standard
+    if ($this->score_confiance < 70 && $this->role === 'verifie') {
+        $this->role = 'standard';
+        $this->save();
+    }
+}
+
+/**
+ * Vérifier si l'utilisateur est suspendu
+ */
+public function estSuspendu(): bool
+{
+    return $this->est_suspendu == true;
+}
 
 }

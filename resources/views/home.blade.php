@@ -7,13 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Tous vos styles CSS restent identiques */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        *::-webkit-scrollbar {
+        display: none;
+      }
 
+
+{-ms-overflow-style: none;
+      scrollbar-width: none;}
         body {
             font-family: 'Inter', sans-serif;
             background: #f5f7f5;
@@ -264,7 +269,7 @@
         }
         .mobile-overlay.active { display: block; }
 
-        /* Hero Section - SEULE L'IMAGE EST FIXE (effet parallax) */
+        /* Hero Section */
         .hero {
             position: relative;
             min-height: 80vh;
@@ -272,7 +277,6 @@
             align-items: center;
             overflow: visible;
         }
-        /* Image de fond fixe */
         .hero-bg {
             position: absolute;
             top: 0;
@@ -286,7 +290,6 @@
             background-attachment: fixed;
             z-index: 0;
         }
-        /* Overlay sombre */
         .hero-bg::before {
             content: '';
             position: absolute;
@@ -296,7 +299,6 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
         }
-        /* Contenu qui défile normalement */
         .hero-content {
             position: relative;
             z-index: 2;
@@ -322,7 +324,7 @@
             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
         }
 
-        /* Search Bar - QUI DEPASSE DE LA HERO SECTION */
+        /* Search Bar */
         .search-wrapper {
             position: relative;
             z-index: 10;
@@ -373,9 +375,6 @@
             cursor: pointer;
             color: #1a1a1a;
         }
-        .search-item select option {
-            color: #1a1a1a;
-        }
         .search-btn {
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
             color: white;
@@ -401,77 +400,47 @@
         }
 
         /* ============================================ */
-        /* SECTION ANNONCES À LA UNE - 3 CARTES AVEC IMAGE EN ARRIÈRE-PLAN */
+        /* STYLE CENTRÉ POUR TOUS LES TITRES DE SECTIONS */
         /* ============================================ */
-        .featured-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        .section-header-center {
+            text-align: center;
             margin-bottom: 48px;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .featured-title {
+        .section-title-center {
             font-size: 36px;
             font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
             letter-spacing: -0.5px;
             position: relative;
             display: inline-block;
         }
-        .featured-title::after {
+
+        .section-title-center::after {
             content: '';
             position: absolute;
             bottom: -12px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
             border-radius: 3px;
         }
 
-        .featured-subtitle {
+        .section-subtitle-center {
             color: #6c757d;
             font-size: 16px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
 
-        .featured-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #2d6a4f;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            padding: 10px 20px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
-            background: #e8f5e9;
-        }
-        .featured-link:hover {
-            background: #2d6a4f;
-            color: white;
-            gap: 12px;
-            transform: translateX(4px);
-        }
-        .featured-link i {
-            transition: transform 0.3s ease;
-        }
-        .featured-link:hover i {
-            transform: translateX(4px);
-        }
-
-        /* Grille 3 cartes */
+        /* Annonces à la une */
         .featured-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
         }
-
-        /* Carte avec image en arrière-plan */
         .featured-card {
             position: relative;
             background-size: cover;
@@ -490,8 +459,6 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
-
-        /* Overlay sombre sur l'image */
         .featured-card::before {
             content: '';
             position: absolute;
@@ -502,8 +469,6 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
             z-index: 1;
         }
-
-        /* Badge sur l'image */
         .card-badge {
             position: absolute;
             top: 16px;
@@ -520,15 +485,10 @@
             gap: 5px;
             z-index: 3;
         }
-        .card-badge i {
-            font-size: 11px;
-        }
         .card-badge.featured-badge {
             background: linear-gradient(135deg, #e65100, #ff9800);
             color: white;
         }
-
-        /* Corps de la carte - texte par-dessus l'image */
         .card-body {
             position: relative;
             z-index: 2;
@@ -553,10 +513,6 @@
             align-items: center;
             gap: 5px;
             margin-bottom: 12px;
-        }
-        .card-location i {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
         }
         .card-price {
             font-size: 28px;
@@ -589,21 +545,181 @@
             align-items: center;
             gap: 4px;
         }
-        .card-views i {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
+
+        /* SECTION ANNONCES RÉCENTES */
+        .recent-special {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
         }
 
-        /* Banner */
-        .banner {
-            background: linear-gradient(135deg, #e8f0e6 0%, #c8dcc4 100%);
-            border-radius: 40px;
-            text-align: center;
-            padding: 60px;
-            margin: 40px 0;
+        .recent-featured-card {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            min-height: 280px;
         }
-        .banner h2 { font-size: 36px; margin-bottom: 16px; }
-        .banner p { font-size: 16px; color: #4a5b4d; margin-bottom: 32px; }
+        .recent-featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+        .recent-featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        .recent-featured-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #e65100, #ff9800);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            z-index: 3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .recent-featured-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+            height: 100%;
+            min-height: 280px;
+        }
+        .recent-featured-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .recent-featured-description {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .recent-featured-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .recent-side-cards {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .recent-side-card {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .recent-side-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            border-radius: 20px;
+            z-index: 1;
+        }
+        .recent-side-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .recent-side-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        .side-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+        .side-card-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        .side-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+        .side-card-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .side-card-link {
+            color: #ffd966;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: gap 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .side-card-link:hover {
+            gap: 10px;
+        }
+        .side-card-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .side-card-stats span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .side-card-stats i {
+            color: #ffd966;
+        }
 
         /* Steps */
         .steps-grid {
@@ -630,24 +746,129 @@
         .step-title { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
         .step-desc { color: #6c757d; font-size: 14px; line-height: 1.6; }
 
-        /* Security */
-        .security-section {
-            background: linear-gradient(135deg, #1a2e1a 0%, #1e4620 100%);
+        /* SECTION SÉCURITÉ HORIZONTALE */
+        .horizontal-security-container {
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .horizontal-security-left {
+            flex: 1;
+            width: 50%;
+        }
+
+        .image-frame-small {
+            background: linear-gradient(135deg, #1e4620, #2d6a4f);
+            border-radius: 20px;
+            padding: 8px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .security-small-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+            min-height: 180px;
+            max-height: 220px;
+        }
+
+        .horizontal-security-right {
+            flex: 1;
+            width: 50%;
+        }
+
+        .security-text-content-small {
+            background: #0a1a0a;
+            border-radius: 20px;
+            padding: 24px 28px;
             color: white;
-            border-radius: 40px;
-            padding: 60px;
-            margin-top: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
         }
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            margin-top: 48px;
+
+        .security-main-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
-        .security-item { text-align: center; }
-        .security-item i { font-size: 48px; color: #ffd966; margin-bottom: 20px; }
-        .security-item h4 { font-size: 20px; margin-bottom: 12px; }
-        .security-item p { font-size: 14px; opacity: 0.85; line-height: 1.6; }
+
+        .security-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .security-points-center {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .security-point-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .security-point-center:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .security-point-center i {
+            font-size: 24px;
+            color: #ffd966;
+        }
+
+        .security-point-center strong {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .security-point-center span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .security-link-center {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #ffd966;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            background: rgba(255, 217, 102, 0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+
+        .security-link-center:hover {
+            gap: 12px;
+            background: rgba(255, 217, 102, 0.2);
+            color: #ffe08c;
+        }
 
         /* Footer */
         .footer {
@@ -673,7 +894,19 @@
         @media (max-width: 900px) {
             .featured-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
+            }
+            .recent-special {
+                flex-direction: column;
+            }
+            .recent-featured-card {
+                min-height: 250px;
+            }
+            .recent-featured-content {
+                min-height: 250px;
+            }
+            .recent-side-cards {
+                flex-direction: row;
+                gap: 20px;
             }
             .nav-links, .auth-actions { display: none; }
             .mobile-menu-btn { display: block; }
@@ -683,25 +916,90 @@
             .search-card { flex-direction: column; border-radius: 30px; }
             .search-item { border-radius: 40px; }
             .search-btn { padding: 14px; }
-            .steps-grid, .security-grid, .footer-content { grid-template-columns: 1fr; }
+            .steps-grid, .footer-content { grid-template-columns: 1fr; }
             .container { padding: 40px 20px; }
-            .banner h2 { font-size: 28px; }
-            .banner { padding: 40px 20px; }
+            
+            .horizontal-security-container {
+                flex-direction: column;
+            }
+            .horizontal-security-left,
+            .horizontal-security-right {
+                width: 100%;
+            }
+            .security-text-content-small {
+                padding: 24px;
+            }
+            .security-points-center {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .security-point-center {
+                flex-direction: row;
+                justify-content: center;
+                gap: 12px;
+            }
+            .security-small-image {
+                min-height: 140px;
+                max-height: 160px;
+            }
+            .section-title-center {
+                font-size: 28px;
+            }
         }
 
         @media (max-width: 600px) {
             .featured-grid {
                 grid-template-columns: 1fr;
             }
-            .featured-header {
+            .recent-side-cards {
                 flex-direction: column;
-                align-items: flex-start;
+            }
+            .featured-grid {
+                margin-top: 20px;
+            }
+            .recent-special {
+                margin-top: 20px;
             }
             .featured-title {
                 font-size: 28px;
             }
-            .card-price {
+            .recent-title {
+                font-size: 28px;
+            }
+            .recent-featured-title {
+                font-size: 20px;
+            }
+            .recent-featured-price {
+                font-size: 22px;
+            }
+            
+            .container {
+                padding: 40px 20px;
+            }
+            .security-text-content-small {
+                padding: 20px;
+            }
+            .security-main-title {
+                font-size: 18px;
+            }
+            .security-point-center {
+                padding: 10px 12px;
+            }
+            .security-point-center i {
+                font-size: 20px;
+            }
+            .security-point-center strong {
+                font-size: 12px;
+            }
+            .section-title-center {
                 font-size: 24px;
+            }
+            .section-subtitle-center {
+                font-size: 14px;
+            }
+            .security-small-image {
+                min-height: 120px;
+                max-height: 140px;
             }
         }
 
@@ -736,11 +1034,16 @@
             <div class="auth-actions">
                 @auth
                     <div class="user-menu">
-                        <div class="user-avatar">
-                            <i class="fas fa-user-circle"></i>
-                            <span>{{ Auth::user()->prenom }}</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                       <div class="user-avatar">
+    <i class="fas fa-user-circle"></i>
+    <span>{{ Auth::user()->prenom }}</span>
+    @if(Auth::user()->role === 'verifie')
+        <span class="verified-badge-header" style="background: #2d6a4f; color: white; padding: 2px 8px; border-radius: 20px; font-size: 10px; margin-left: 5px;">
+            <i class="fas fa-check-circle"></i> Vérifié
+        </span>
+    @endif
+    <i class="fas fa-chevron-down"></i>
+</div>
                         <div class="user-dropdown">
                             <a href="{{ route('profile.show') }}"><i class="fas fa-user-cog"></i> Mon profil</a>
                             <a href="{{ route('mes-annonces') }}"><i class="fas fa-list"></i> Mes annonces</a>
@@ -826,17 +1129,11 @@
         </form>
     </div>
 
-    <!-- Annonces à la une - Version corrigée avec images -->
+    <!-- Annonces à la une - Titre centré -->
     <div class="container">
-        <div class="featured-header">
-            <div>
-                <h2 class="featured-title">Annonces à la une</h2>
-                <p class="featured-subtitle">Les plus beaux spécimens sélectionnés pour vous</p>
-            </div>
-            <a href="{{ route('annonces.index') }}" class="featured-link">
-                Voir tout 
-                <i class="fas fa-arrow-right"></i>
-            </a>
+        <div class="section-header-center">
+            <h2 class="section-title-center">Annonces à la une</h2>
+            <p class="section-subtitle-center">Les plus beaux spécimens sélectionnés pour vous</p>
         </div>
 
         <div class="featured-grid">
@@ -873,7 +1170,6 @@
                     </div>
                 </a>
             @empty
-                <!-- Cartes par défaut -->
                 <a href="#" class="featured-card" style="background-image: url('{{ asset('images/a1.png') }}');">
                     <div class="card-badge"><i class="fas fa-check-circle"></i> Éleveur Vérifié</div>
                     <div class="card-body">
@@ -914,64 +1210,138 @@
         </div>
     </div>
 
-    <!-- Banner -->
-    <div class="container">
-        <div class="banner">
-            <h2>Prêt pour un nouveau foyer</h2>
-            <p>Plus de 50 oiseaux ont trouvé une famille cette semaine.</p>
-            <a href="{{ route('annonces.index') }}" class="btn-register" style="display: inline-block;">Découvrir</a>
+    <!-- Annonces Récentes - Titre centré -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Annonces Récentes</h2>
+            <p class="section-subtitle-center">Les dernières annonces publiées</p>
+        </div>
+
+        <div class="recent-special">
+            @php
+                $photo = $annonceRecente ? $annonceRecente->getPhotoPrincipale() : null;
+                $bgImage = asset('images/default.jpg');
+                if ($photo && $photo->chemin_stockage) {
+                    $path = $photo->chemin_stockage;
+                    $path = preg_replace('#^storage/?#', '', $path);
+                    if (!str_starts_with($path, 'images/')) {
+                        $path = 'images/' . $path;
+                    }
+                    $bgImage = asset('storage/' . $path);
+                }
+            @endphp
+            
+            <div class="recent-featured-card" style="background-image: url('{{ $bgImage }}');">
+                <div class="recent-featured-badge">Nouveau</div>
+                <div class="recent-featured-content">
+                    <h3 class="recent-featured-title">{{ $annonceRecente->titre ?? 'Cacatoès à huppe jaune' }}</h3>
+                    <p class="recent-featured-description">{{ Str::limit($annonceRecente->description ?? 'Rare spécimen élevé à la main, sociabilisé et en excellente santé.', 80) }}</p>
+                    <div class="recent-featured-price">{{ number_format($annonceRecente->prix ?? 2400, 0, ',', ' ') }}€</div>
+                </div>
+            </div>
+
+            <div class="recent-side-cards">
+                <div class="recent-side-card" style="background-image: url('{{ asset('images/home.PNG') }}');">
+                    <div class="side-card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4 class="side-card-title">Prêt pour un nouveau foyer</h4>
+                    <p class="side-card-text">Plus de 50 oiseaux ont trouvé une famille cette semaine.</p>
+                    <a href="{{ route('annonces.index') }}" class="side-card-link">Découvrir →</a>
+                </div>
+
+                <div class="recent-side-card" style="background-image: url('{{ asset('images/heart.PNG') }}');">
+                    <div class="side-card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4 class="side-card-title">Favoris de la semaine</h4>
+                    <p class="side-card-text">Découvrez les espèces les plus recherchées en France.</p>
+                    <div class="side-card-stats">
+                        <span><i class="fas fa-dove"></i> Perruche</span>
+                        <span><i class="fas fa-dove"></i> Canari</span>
+                        <span><i class="fas fa-dove"></i> Perroquet</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Section Comment ça marche -->
+    <!-- Section Comment ça marche - Titre centré -->
     @guest
-        <div id="comment-ca-marche" class="container">
-            <h2 class="section-title">Comment ça marche ?</h2>
-            <p class="section-subtitle">PIKO simplifie la vente et l'achat d'oiseaux de compagnie en mettant l'accent sur la sécurité et le bien-être animal.</p>
-            <div class="steps-grid">
-                <div>
-                    <div class="step-icon"><i class="fas fa-search"></i></div>
-                    <div class="step-title">Recherchez</div>
-                    <div class="step-desc">Filtrez par espèce, âge, prix et localisation pour trouver le compagnon idéal.</div>
-                </div>
-                <div>
-                    <div class="step-icon"><i class="fas fa-comments"></i></div>
-                    <div class="step-title">Discutez</div>
-                    <div class="step-desc">Communiquez directement avec les vendeurs et éleveurs via notre messagerie sécurisée.</div>
-                </div>
-                <div>
-                    <div class="step-icon"><i class="fas fa-heart"></i></div>
-                    <div class="step-title">Adoptez</div>
-                    <div class="step-desc">Concluez la transaction en toute confiance grâce à nos guides de sécurité.</div>
-                </div>
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Comment ça marche ?</h2>
+            <p class="section-subtitle-center">PIKO simplifie la vente et l'achat d'oiseaux de compagnie en mettant l'accent sur la sécurité et le bien-être animal.</p>
+        </div>
+        <div class="steps-grid">
+            <div>
+                <div class="step-icon"><i class="fas fa-search"></i></div>
+                <div class="step-title">Recherchez</div>
+                <div class="step-desc">Filtrez par espèce, âge, prix et localisation pour trouver le compagnon idéal.</div>
+            </div>
+            <div>
+                <div class="step-icon"><i class="fas fa-comments"></i></div>
+                <div class="step-title">Discutez</div>
+                <div class="step-desc">Communiquez directement avec les vendeurs et éleveurs via notre messagerie sécurisée.</div>
+            </div>
+            <div>
+                <div class="step-icon"><i class="fas fa-heart"></i></div>
+                <div class="step-title">Adoptez</div>
+                <div class="step-desc">Concluez la transaction en toute confiance grâce à nos guides de sécurité.</div>
             </div>
         </div>
+    </div>
     @endguest
 
-    <!-- Security Section -->
-    <div class="container">
-        <div class="security-section">
-            <h2 style="font-size: 32px; text-align: center;">VOTRE SÉCURITÉ EST NOTRE PRIORITÉ</h2>
-            <p style="text-align: center; opacity: 0.85; margin-top: 12px;">Engagés pour le bien-être et la transparence</p>
-            <div class="security-grid">
-                <div class="security-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Vérification des Éleveurs</h4>
-                    <p>Nous vérifions l'identité et les certifications des éleveurs professionnels.</p>
-                </div>
-                <div class="security-item">
-                    <i class="fas fa-gavel"></i>
-                    <h4>Lutte contre le Trafic</h4>
-                    <p>Contrôle strict des espèces protégées et respect des conventions CITES.</p>
-                </div>
-                <div class="security-item">
-                    <i class="fas fa-book-medical"></i>
-                    <h4>Conseils Santé</h4>
-                    <p>Accès à des guides vétérinaires pour préparer l'arrivée de votre oiseau.</p>
+    <!-- Section Sécurité & Confiance - Titre centré -->
+    <div class="container" style="padding-top: 14px;">
+        <div class="section-header-center">
+            <h2 class="section-title-center">Sécurité & Confiance</h2>
+            <p class="section-subtitle-center">Engagés pour votre sécurité et le bien-être des animaux</p>
+        </div>
+
+        <div class="horizontal-security-container">
+            <!-- Partie Gauche - Image avec cadre (couleur des boutons) -->
+            <div class="horizontal-security-left">
+                <div class="image-frame-small">
+                    <img src="{{ asset('images/securiter.png') }}" alt="Sécurité" class="security-small-image">
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#" style="color: #ffd966; text-decoration: none; font-weight: 600;">Lire notre charte →</a>
+
+            <!-- Partie Droite - Texte centré (couleur du footer) -->
+            <div class="horizontal-security-right">
+                <div class="security-text-content-small">
+                    <h3 class="security-main-title">VOTRE SÉCURITÉ EST NOTRE PRIORITÉ</h3>
+                    <p class="security-desc">Nous mettons tout en œuvre pour garantir des échanges sûrs et responsables.</p>
+                    
+                    <div class="security-points-center">
+                        <div class="security-point-center">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Vérification</strong>
+                                <span>Des éleveurs</span>
+                            </div>
+                        </div>
+                        
+                        <div class="security-point-center">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Lutte contre</strong>
+                                <span>le trafic</span>
+                            </div>
+                        </div>
+                        
+                        <div class="security-point-center">
+                            <i class="fas fa-heartbeat"></i>
+                            <div>
+                                <strong>Conseils</strong>
+                                <span>Santé</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="security-link-center">Lire notre charte →</a>
+                </div>
             </div>
         </div>
     </div>

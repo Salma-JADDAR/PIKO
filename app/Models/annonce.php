@@ -15,6 +15,7 @@ class Annonce extends Model{
         'description',
         'prix',
         'etat',
+        'raison_rejet',
         'nb_vues',
         'date_publication',
         'user_id',
@@ -108,11 +109,16 @@ class Annonce extends Model{
     }
 
    
-    public function peutEtreModifiee(): bool{
-        return in_array($this->etat, ['brouillon', 'en_attente']);
-    }
+   public function peutEtreModifiee(): bool{
+    return in_array($this->etat, ['brouillon', 'en_attente']);
+}
 
     public function estPubliee(): bool{
         return $this->etat === 'publiee';
     }
+
+    public function contacts()
+{
+    return $this->hasMany(Contact::class, 'annonce_id');
+}
 }

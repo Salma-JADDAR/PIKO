@@ -5,7 +5,7 @@ use App\Models\Espece;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EspeceFactory extends Factory{
-    protected $model = Espece::class;
+  
 
     public function definition(): array{
         $categories = ['Psittacidés', 'Passereaux', 'Colombidés', 'Gallinacés', 'Autres'];
