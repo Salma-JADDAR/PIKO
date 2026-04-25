@@ -9,13 +9,13 @@ class PhotoSeeder extends Seeder
 {
     public function run(): void
     {
-        // Supprimer les anciennes photos (optionnel)
+        
         Photo::truncate();
         
         foreach (Annonce::all() as $annonce) {
-            // Pour chaque annonce, créer 5 photos
+         
             for ($i = 1; $i <= 5; $i++) {
-                $isPrincipal = ($i === 1); // La première photo (i=1) est principale
+                $isPrincipal = ($i === 1);
                 $imageName = $isPrincipal ? 'a' . $annonce->id . '.png' : 'a' . $annonce->id . $i . '.png';
                 
                 Photo::create([
