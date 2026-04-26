@@ -188,19 +188,14 @@ class AnnonceController extends Controller{
         return view('annonces.show', compact('annonce', 'estFavori'));
     }
 
-    /**
-     * MODIFIÉ : Vérification de l'état de l'annonce
-     */
-    public function edit($id)
-    {
+  
+    public function edit($id){
         $annonce = Annonce::findOrFail($id);
         
-        // Vérifier que l'utilisateur est le propriétaire
-        if ($annonce->user_id !== Auth::id()) {
+         if ($annonce->user_id !== Auth::id()) {
             abort(403, 'Vous n\'êtes pas autorisé à modifier cette annonce.');
         }
         
-        // 🔥 NOUVEAU : Vérifier si l'annonce peut être modifiée
         if (!$annonce->peutEtreModifiee()) {
             $statuts = [
                 'brouillon' => 'brouillon',
