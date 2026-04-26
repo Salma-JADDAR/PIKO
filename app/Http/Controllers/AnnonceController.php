@@ -81,11 +81,10 @@ class AnnonceController extends Controller{
         return view('annonces.index', compact('annonces', 'especesList', 'totalCount', 'publishedCount', 'soldCount'));
     }
     
- public function create()
-{
+ public function create(){
     $user = Auth::user();
     
-    // تحقق من وجود المستخدم
+ 
     if (!$user) {
         return redirect()->route('login')->with('error', 'Veuillez vous connecter.');
     }
