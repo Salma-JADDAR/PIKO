@@ -172,24 +172,21 @@ class AnnonceController extends Controller{
         }
     }
     
-   public function show($id)
-{
-    $annonce = Annonce::with(['utilisateur', 'espece', 'photos'])->findOrFail($id);
-    
-    // Vérifier si l'utilisateur a déjà vu cette annonce dans cette session
-    $sessionKey = 'viewed_annonce_' . $id;
-    if (!session()->has($sessionKey)) {
+   public function show($id){
+      $annonce = Annonce::with(['utilisateur', 'espece', 'photos'])->findOrFail($id);
+      $sessionKey = 'viewed_annonce_' . $id;
+      if (!session()->has($sessionKey)) {
         $annonce->increment('nb_vues');
         session()->put($sessionKey, true);
-    }
+      }
     
-    $estFavori = false;
-    if (Auth::check()) {
-        $estFavori = $annonce->favoris()->where('user_id', Auth::id())->exists();
-    }
+       $estFavori = false;
+       if (Auth::check()) {
+          $estFavori = $annonce->favoris()->where('user_id', Auth::id())->exists();
+       }
     
-    return view('annonces.show', compact('annonce', 'estFavori'));
-}
+        return view('annonces.show', compact('annonce', 'estFavori'));
+    }
 
     /**
      * MODIFIÉ : Vérification de l'état de l'annonce
