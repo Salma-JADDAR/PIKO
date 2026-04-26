@@ -98,8 +98,7 @@ class AnnonceController extends Controller{
     return view('annonces.create', compact('especes'));
 }
     
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'titre' => 'required|max:60',
             'description' => 'required',
