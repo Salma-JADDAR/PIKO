@@ -17,11 +17,9 @@ use App\Mail\ReponseAcheteurMail;
  * @property-read User $user
  */
 
-class AnnonceController extends Controller
-{
+class AnnonceController extends Controller{
    
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $query = Annonce::with(['utilisateur', 'espece', 'photos']);
         
         if ($request->filled('status')) {
