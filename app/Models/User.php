@@ -47,14 +47,14 @@ class User extends Authenticatable{
     }
 
    
-public function getQuotaAnnoncesAttribute(): int{
-    if ($this->role === 'verifie') {
-        return 5;
-    } elseif ($this->role === 'admin') {
+    public function getQuotaAnnoncesAttribute(): int{
+       if ($this->role === 'verifie') {
+         return 5;
+       } elseif ($this->role === 'admin') {
         return 999;
-    } else {
+       } else {
         return 3;
-    }
+       }
 }
 
     
@@ -69,11 +69,11 @@ public function getQuotaAnnoncesAttribute(): int{
     }
 
  
-public function peutAjouterFavori(): bool{
-    if ($this->estAdmin()) return true;
-    if ($this->estVerifie()) return true;
+   public function peutAjouterFavori(): bool{
+      if ($this->estAdmin()) return true;
+      if ($this->estVerifie()) return true;
     
-    return $this->favoris()->count() < 20;
+      return $this->favoris()->count() < 20;
    }
 
    

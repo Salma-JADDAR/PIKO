@@ -30,25 +30,7 @@ class Photo extends Model{
     }
 
     
-    public function uploader(UploadedFile $fichier): void{
-    
-        $nom = time() . '_' . $fichier->getClientOriginalName();
-        $chemin = $fichier->storeAs('photos/annonces', $nom, 'public');
-        
-        $this->nom_fichier = $fichier->getClientOriginalName();
-        $this->chemin_stockage = $chemin;
-        $this->date_upload = now();
-        $this->save();
-    }
-
-
-    public function supprimer(): void{
   
-        if ($this->chemin_stockage) {
-            Storage::disk('public')->delete($this->chemin_stockage);
-        }
-        $this->delete();
-    }
     public function getUrlAttribute(): string{
         return Storage::url($this->chemin_stockage);
     }
