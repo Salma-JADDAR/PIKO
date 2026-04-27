@@ -213,11 +213,7 @@ class AnnonceController extends Controller{
         return view('annonces.edit', compact('annonce', 'especes'));
     }
 
-    /**
-     * MODIFIÉ : Vérification de l'état de l'annonce
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $annonce = Annonce::findOrFail($id);
         
         if ($annonce->user_id !== Auth::id()) {
@@ -235,10 +231,8 @@ class AnnonceController extends Controller{
             'description' => 'required',
             'prix' => 'required|numeric|min:0',
             'espece_id' => 'required|exists:especes,id',
-            'photo_principale_id' => 'nullable|exists:photos,id',
-            'photos_to_delete' => 'nullable|string',
-            'new_photos' => 'nullable|array|max:' . (5 - $annonce->photos->count()),
-            'new_photos.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+      
+        
         ]);
         
         DB::beginTransaction();
@@ -251,37 +245,7 @@ class AnnonceController extends Controller{
                 'espece_id' => $request->espece_id
             ]);
             
-            if ($request->filled('photos_to_delete')) {
-                $photosToDelete = explode(',', $request->photos_to_delete);
-                foreach ($photosToDelete as $photoId) {
-                    $photo = Photo::find($photoId);
-                    if ($photo && $photo->annonce_id == $annonce->id) {
-                        Storage::disk('public')->delete($photo->chemin_stockage);
-                        $photo->delete();
-                    }
-                }
-            }
-            
-            if ($request->filled('photo_principale_id')) {
-                $annonce->photos()->update(['est_principale' => false]);
-                $newPrincipal = Photo::find($request->photo_principale_id);
-                if ($newPrincipal && $newPrincipal->annonce_id == $annonce->id) {
-                    $newPrincipal->update(['est_principale' => true]);
-                }
-            }
-            
-            if ($request->hasFile('new_photos')) {
-                foreach ($request->file('new_photos') as $file) {
-                    $path = $file->store('images', 'public');
-                    Photo::create([
-                        'annonce_id' => $annonce->id,
-                        'nom_fichier' => $file->getClientOriginalName(),
-                        'chemin_stockage' => $path,
-                        'est_principale' => $annonce->photos()->count() === 0,
-                        'date_upload' => now()
-                    ]);
-                }
-            }
+          
             
             DB::commit();
             return redirect()->route('mes-annonces')  
