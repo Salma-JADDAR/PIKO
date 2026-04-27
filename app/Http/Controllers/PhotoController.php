@@ -59,9 +59,8 @@ class PhotoController extends Controller{
         return back()->with('success', 'Photo principale mise à jour.');
     }
 
-    // Supprimer une photo
-    public function destroy(Photo $photo)
-    {
+ 
+    public function destroy(Photo $photo){
         $annonce = $photo->annonce;
         
         if ($annonce->user_id !== Auth::id()) {
