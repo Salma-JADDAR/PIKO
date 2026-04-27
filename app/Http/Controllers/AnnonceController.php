@@ -297,12 +297,11 @@ class AnnonceController extends Controller{
         return back()->with('success', 'Annonce marquée comme vendue.');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         $annonce = Annonce::findOrFail($id);
         $user = Auth::user();
         
-        if ($annonce->user_id !== $user->id && $user->role !== 'admin') {
+        if ($annonce->user_id !== $user->id ) {
             abort(403, 'Vous n\'êtes pas autorisé à supprimer cette annonce.');
         }
         
