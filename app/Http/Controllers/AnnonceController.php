@@ -353,37 +353,6 @@ class AnnonceController extends Controller{
     ));
 }
 
-    public function uploadPhotos(Request $request, $id)
-    {
-        $annonce = Annonce::findOrFail($id);
-        
-        if ($annonce->user_id !== Auth::id()) {
-            return back()->with('error', 'Non autorisé');
-        }
-        
-        // Vérifier si on peut ajouter des photos
-        if (!$annonce->peutEtreModifiee()) {
-            return back()->with('error', 'Cette annonce ne peut plus être modifiée.');
-        }
-        
-        $request->validate([
-            'new_photos' => 'required|array|max:' . (5 - $annonce->photos->count()),
-            'new_photos.*' => 'image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-        
-        foreach ($request->file('new_photos') as $file) {
-            $path = $file->store('images', 'public');
-            Photo::create([
-                'annonce_id' => $annonce->id,
-                'nom_fichier' => $file->getClientOriginalName(),
-                'chemin_stockage' => $path,
-                'est_principale' => $annonce->photos->count() === 0,
-                'date_upload' => now()
-            ]);
-        }
-        
-        return back()->with('success', 'Photos ajoutées avec succès');
-    }
-
+    
    
 }

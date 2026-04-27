@@ -1,5 +1,5 @@
 <?php
-// app/Http/Controllers/PhotoController.php
+
 
 namespace App\Http\Controllers;
 
@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class PhotoController extends Controller
-{
-    // Ajouter des photos
-    public function store(Request $request, Annonce $annonce)
-    {
+class PhotoController extends Controller{
+   
+    public function store(Request $request, Annonce $annonce) {
         if ($annonce->user_id !== Auth::id()) {
             return back()->with('error', 'Non autorisé.');
         }
