@@ -275,15 +275,13 @@ class AnnonceController extends Controller{
         return back()->with('success', 'Annonce soumise pour validation.');
     }
 
-    public function markAsSold($id)
-    {
+    public function markAsSold($id){
         $annonce = Annonce::findOrFail($id);
         
         if ($annonce->user_id !== Auth::id()) {
             abort(403, 'Vous n\'êtes pas autorisé à modifier cette annonce.');
         }
-        
-        // Vérifier que l'annonce est publiée
+    
         if ($annonce->etat !== 'publiee') {
             return back()->with('error', 'Seules les annonces publiées peuvent être marquées comme vendues.');
         }
