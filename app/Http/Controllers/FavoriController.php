@@ -7,17 +7,13 @@ use App\Models\Favori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FavoriController extends Controller
-{
-    /**
-     * Afficher la liste des favoris
-     */
-    public function index()
-    {
+class FavoriController extends Controller{
+ 
+    public function index() {
         $favoris = Favori::where('user_id', Auth::id())
             ->with('annonce', 'annonce.photos', 'annonce.utilisateur')
             ->latest('date_ajout')
-            ->paginate(12);
+            ->paginate(6);
         
         return view('favoris.index', compact('favoris'));
     }
