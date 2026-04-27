@@ -257,15 +257,13 @@ class AnnonceController extends Controller{
         }
     }
 
-    public function submit($id)
-    {
+    public function submit($id){
         $annonce = Annonce::findOrFail($id);
         
         if ($annonce->user_id !== Auth::id()) {
             abort(403, 'Vous n\'êtes pas autorisé à soumettre cette annonce.');
         }
         
-        // Vérifier que l'annonce est bien en brouillon
         if ($annonce->etat !== 'brouillon') {
             return back()->with('error', 'Seules les annonces en brouillon peuvent être soumises.');
         }
