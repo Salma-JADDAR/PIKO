@@ -40,11 +40,8 @@ class FavoriController extends Controller{
         }
     }
 
-    /**
-     * Supprimer un favori (depuis la page mes favoris)
-     */
-    public function destroy($id)
-    {
+  
+    public function destroy($id)  {
         $favori = Favori::where('id', $id)
             ->where('user_id', Auth::id())
             ->firstOrFail();
