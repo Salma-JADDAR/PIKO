@@ -43,9 +43,8 @@ class PhotoController extends Controller{
         return back()->with('success', 'Photos ajoutées avec succès.');
     }
 
-    // Définir photo principale
-    public function principal(Photo $photo)
-    {
+  
+    public function principal(Photo $photo){
         $annonce = $photo->annonce;
         
         if ($annonce->user_id !== Auth::id()) {
