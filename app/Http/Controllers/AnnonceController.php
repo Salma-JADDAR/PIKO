@@ -322,8 +322,7 @@ class AnnonceController extends Controller{
             ->with('success', 'Annonce supprimée avec succès.');
     }
 
-    public function myListings(Request $request)
-{
+    public function myListings(Request $request){
     $allAnnoncesQuery = Annonce::where('user_id', Auth::id());
     
     $query = Annonce::where('user_id', Auth::id())->with('espece', 'photos');
@@ -331,11 +330,9 @@ class AnnonceController extends Controller{
     if ($request->filled('status')) {
         $query->where('etat', $request->status);
     }
-    
-    // 🔥 CHANGE ICI : 6 au lieu de 10 pour avoir 2 lignes de 3 cartes
+
     $annonces = $query->latest()->paginate(6);
-    
-    // Statistiques globales
+
     $totalAnnonces = $allAnnoncesQuery->count();
     $totalVues = $allAnnoncesQuery->sum('nb_vues');
     $enAttenteCount = $allAnnoncesQuery->where('etat', 'en_attente')->count();
