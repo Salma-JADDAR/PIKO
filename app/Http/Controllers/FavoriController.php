@@ -18,11 +18,8 @@ class FavoriController extends Controller{
         return view('favoris.index', compact('favoris'));
     }
 
-    /**
-     * Ajouter ou retirer une annonce des favoris (sans AJAX)
-     */
-    public function toggle($id)
-    {
+  
+    public function toggle($id){
         $annonce = Annonce::findOrFail($id);
         $user = Auth::user();
         
