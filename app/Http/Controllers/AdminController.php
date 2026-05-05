@@ -162,7 +162,7 @@ public function especeStore(Request $request)
         'difficulte_elevage' => $request->difficulte_elevage,
     ]);
 
-    return redirect()->back()->with('success', 'Espèce modifiée avec succès ✅');
+    return redirect()->back()->with('success', 'Espèce modifiée avec succès ');
 }
 
     public function especeToggle(Espece $espece)
