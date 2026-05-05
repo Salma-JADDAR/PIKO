@@ -81,9 +81,8 @@ class ContactController extends Controller
 
     return view('annonces.repondre-acheteur', compact('contact', 'telephoneVendeur'));
 }
-    // Envoyer la réponse à l'acheteur
-    public function repondreAcheteurEnvoyer(Request $request)
-    {
+ 
+    public function repondreAcheteurEnvoyer(Request $request){
         $request->validate([
             'contact_id' => 'required|exists:contacts,id',
             'message' => 'required|string|min:10|max:2000',
@@ -100,7 +99,7 @@ class ContactController extends Controller
             return back()->with('info', 'Déjà répondu.');
         }
 
-        // Email de l'acheteur = expediteur->email
+      
         $emailAcheteur = $contact->expediteur->email;
 
         Mail::to($emailAcheteur)->send(new ReponseAcheteurMail($contact, $request));
