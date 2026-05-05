@@ -168,7 +168,7 @@ public function especeStore(Request $request)
     public function especeToggle(Espece $espece)
     {
         $espece->update(['est_active' => !$espece->est_active]);
-        return redirect()->back()->with('success', $espece->est_active ? 'Espèce activée ✅' : 'Espèce désactivée ❌');
+        return redirect()->back()->with('success', $espece->est_active ? 'Espèce activée ' : 'Espèce désactivée ');
     }
 
     public function especeDestroy(Espece $espece)
