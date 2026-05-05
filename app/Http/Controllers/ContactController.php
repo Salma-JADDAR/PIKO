@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
-    // Envoyer un message à un vendeur
+   
     public function store(Request $request, $annonceId)
     {
         $annonce = Annonce::findOrFail($annonceId);
@@ -51,7 +51,7 @@ class ContactController extends Controller
                 'date_envoi' => now(),
             ]);
 
-            // Envoyer l'email au vendeur
+          
             Mail::to($annonce->utilisateur->email)->send(new ContactVendeurMail($annonce, $request, $contact));
 
             DB::commit();
