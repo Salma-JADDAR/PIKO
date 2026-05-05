@@ -69,8 +69,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Annonce approuvée avec succès  +5 points de confiance.');
     }
 
-    public function rejeter(Request $request, Annonce $annonce)
-    {
+    public function rejeter(Request $request, Annonce $annonce){
         $request->validate([
             'raison' => 'required|string|min:10|max:500'
         ]);
@@ -89,7 +88,7 @@ class AdminController extends Controller
             Log::error('Erreur envoi email rejet: ' . $e->getMessage());
         }
 
-        return redirect()->back()->with('error', 'Annonce rejetée ❌ -10 points de confiance.');
+        return redirect()->back()->with('error', 'Annonce rejetée  -10 points de confiance.');
     }
    public function suspendreUtilisateur(Request $request, User $user)
 {
