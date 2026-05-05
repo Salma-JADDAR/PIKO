@@ -90,8 +90,8 @@ class AdminController extends Controller
 
         return redirect()->back()->with('error', 'Annonce rejetée  -10 points de confiance.');
     }
-   public function suspendreUtilisateur(Request $request, User $user)
-{
+
+   public function suspendreUtilisateur(Request $request, User $user){
     $request->validate([
         'duree_jours' => 'required|integer|min:1|max:365',
         'raison' => 'required|string|min:10|max:500'
@@ -100,23 +100,24 @@ class AdminController extends Controller
     $user->update([
         'score_confiance' => max(0, $user->score_confiance - 20),
         'est_suspendu' => true,
-        'suspendu_le' => now(),  // ← AJOUTE CETTE LIGNE
-        'raison_suspension' => $request->raison  // ← AJOUTE CETTE LIGNE
+        'suspendu_le' => now(),  
+        'raison_suspension' => $request->raison 
     ]);
 
-    // Envoyer l'email
+    
     Mail::send('emails.utilisateur-suspendu', [
         'user' => $user,
         'duree' => $request->duree_jours,
         'raison' => $request->raison
     ], function ($message) use ($user) {
         $message->to($user->email)
-                ->subject('⚠️ Votre compte a été suspendu - Piko');
+                ->subject(' Votre compte a été suspendu - Piko');
     });
 
     return redirect()->back()->with('success', "Utilisateur suspendu pour {$request->duree_jours} jours.");
 }
-   public function reactiverUtilisateur(User $user)
+  
+public function reactiverUtilisateur(User $user)
 {
     $user->update([
         'score_confiance' => min(100, $user->score_confiance + 15),
@@ -150,35 +151,9 @@ class AdminController extends Controller
         return back()->with('success', "Rôle de {$user->prenom} {$user->nom} modifié avec succès.");
     }
 
-    public function toutesAnnonces(Request $request)
-    {
-        $query = Annonce::with(['utilisateur', 'espece', 'photos']);
-        
-        if ($request->filled('status')) {
-            $query->where('etat', $request->status);
-        }
-        
-        if ($request->filled('user_id')) {
-            $query->where('user_id', $request->user_id);
-        }
-        
-        $annonces = $query->orderBy('created_at', 'desc')->paginate(20);
-        $statusCounts = [
-            'brouillon' => Annonce::where('etat', 'brouillon')->count(),
-            'en_attente' => Annonce::where('etat', 'en_attente')->count(),
-            'publiee' => Annonce::where('etat', 'publiee')->count(),
-            'vendue' => Annonce::where('etat', 'vendue')->count(),
-            'archivee' => Annonce::where('etat', 'archivee')->count(),
-        ];
-        
-        return view('admin.toutes-annonces', compact('annonces', 'statusCounts'));
-    }
+   
 
-    public function voirFavorisUtilisateur(User $user)
-    {
-        $favoris = $user->favoris()->with(['espece', 'photos'])->paginate(20);
-        return view('admin.favoris-utilisateur', compact('user', 'favoris'));
-    }
+  
 
     public function especesIndex()
     {

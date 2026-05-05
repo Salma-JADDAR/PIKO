@@ -90,7 +90,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
      Route::post('/utilisateurs/{user}/suspendre', [AdminController::class, 'suspendreUtilisateur'])->name('utilisateurs.suspendre');
     Route::post('/utilisateurs/{user}/reactiver', [AdminController::class, 'reactiverUtilisateur'])->name('utilisateurs.reactiver');
     Route::put('/utilisateurs/{user}/role', [AdminController::class, 'changerRole'])->name('utilisateurs.role');
-    Route::get('/utilisateurs/{user}/favoris', [AdminController::class, 'voirFavorisUtilisateur'])->name('utilisateurs.favoris');
+  
     
     // Gestion des espèces
       Route::get('/especes', [AdminController::class, 'especesIndex'])->name('especes.index');
