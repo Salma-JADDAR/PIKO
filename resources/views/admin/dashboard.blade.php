@@ -295,44 +295,59 @@
             color: #94a3b8;
         }
 
-        /* Pagination */
+        /* ========== PAGINATION SIMPLIFIÉE ========== */
         .pagination {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 20px;
             margin-top: 40px;
-            flex-wrap: wrap;
         }
-        
-        .pagination a, .pagination span {
+
+        .page-link {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 0 12px;
+            gap: 10px;
+            padding: 12px 28px;
             background: white;
-            color: #4a5568;
+            color: #2d6a4f;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 50px;
             transition: all 0.3s;
             border: 1px solid #e8ecef;
         }
-        
-        .pagination a:hover {
+
+        .page-link:hover {
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
             color: white;
             border-color: transparent;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
         }
-        
-        .pagination .active {
-            background: linear-gradient(135deg, #1e4620, #2d6a4f);
-            color: white;
-            border-color: transparent;
+
+        .page-link.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
+
+        .page-link.disabled:hover {
+            transform: none;
+            background: #f1f5f9;
+            color: #94a3b8;
+            box-shadow: none;
+        }
+
+        .page-info {
+            padding: 8px 20px;
+            background: #e8f0e6;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d6a4f;
         }
 
         /* Empty State */
@@ -477,6 +492,18 @@
             .modern-table {
                 min-width: 800px;
             }
+            .pagination {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .page-link {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .page-info {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -487,8 +514,20 @@
             .stat-info-integrated h3 { font-size: 24px; }
             .hero-dashboard { min-height: 60vh; }
             .filter-wrapper { margin-top: -30px; }
-            .pagination a, .pagination span { min-width: 35px; height: 35px; font-size: 12px; }
             .actions-cell { flex-direction: column; }
+            .pagination {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .page-link {
+                padding: 8px 16px;
+                font-size: 13px;
+                gap: 6px;
+            }
+            .page-info {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
 
         /* Hero Section */
@@ -566,38 +605,34 @@
             margin-right: 8px;
         }
         /* User Dropdown for Admin Page */
-.admin-user-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-}
-
-.admin-user-avatar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 40px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.admin-user-avatar i {
-    font-size: 16px;
-    color: #2d6a4f;
-}
-
-.admin-user-avatar span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #2d6a4f;
-}
-
-.admin-user-dropdown {
-             position: absolute;
+        .admin-user-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        .admin-user-avatar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .admin-user-avatar i {
+            font-size: 16px;
+            color: #2d6a4f;
+        }
+        .admin-user-avatar span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2d6a4f;
+        }
+        .admin-user-dropdown {
+            position: absolute;
             top: 100%;
             right: 0;
             margin-top: 12px;
@@ -610,16 +645,14 @@
             transform: translateY(-10px);
             transition: all 0.3s ease;
             z-index: 100;
-}
-
-.admin-user-menu:hover .admin-user-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.admin-user-dropdown a {
- display: flex;
+        }
+        .admin-user-menu:hover .admin-user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .admin-user-dropdown a {
+            display: flex;
             align-items: center;
             gap: 12px;
             padding: 12px 20px;
@@ -627,23 +660,20 @@
             color: #4a5568;
             font-size: 13px;
             transition: all 0.2s;
-}
-
-.admin-user-dropdown a:hover {
-    background: #e8f0e6;
-    color: #2d6a4f;
-}
-
-.admin-user-dropdown a i {
-    width: 18px;
-    color: #86a788;
-}
-
-.admin-user-dropdown hr {
-    margin: 8px 0;
-    border: none;
-    border-top: 1px solid #eef2f0;
-}
+        }
+        .admin-user-dropdown a:hover {
+            background: #e8f0e6;
+            color: #2d6a4f;
+        }
+        .admin-user-dropdown a i {
+            width: 18px;
+            color: #86a788;
+        }
+        .admin-user-dropdown hr {
+            margin: 8px 0;
+            border: none;
+            border-top: 1px solid #eef2f0;
+        }
     </style>
 </head>
 <body>
@@ -658,28 +688,27 @@
         </div>
     @endif
     <!-- User Dropdown for Admin Page -->
-<div class="admin-user-menu">
-    <div class="admin-user-avatar">
-        <i class="fas fa-user-circle"></i>
-        <span>{{ Auth::user()->prenom }}</span>
-        <i class="fas fa-chevron-down"></i>
+    <div class="admin-user-menu">
+        <div class="admin-user-avatar">
+            <i class="fas fa-user-circle"></i>
+            <span>{{ Auth::user()->prenom }}</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="admin-user-dropdown">
+            <hr>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form-admin').submit();">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+            <form id="logout-form-admin" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+        </div>
     </div>
-    <div class="admin-user-dropdown">
-        
-        <hr>
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form-admin').submit();">
-            <i class="fas fa-sign-out-alt"></i> Déconnexion
-        </a>
-        <form id="logout-form-admin" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-    </div>
-</div>
     <!-- Hero Section -->
     <section class="hero-dashboard">
         <div class="hero-bg"></div>
         <div class="dashboard-content">
             <div class="welcome-header">
                 <div class="welcome-text">
-                    <h2>Bonjour, {{ Auth::user()->prenom }} 👋</h2>
+                    <h2>Bonjour, {{ Auth::user()->prenom }}</h2>
                     <p>Tableau de bord administrateur · Gérez votre marketplace aviaire</p>
                 </div>
                 <div class="admin-badge-header">
@@ -809,8 +838,31 @@
                     </table>
                 </div>
                 
+                <!-- PAGINATION SIMPLIFIÉE POUR ANNONCES EN ATTENTE -->
                 <div class="pagination">
-                    {{ $pendingAds->links() }}
+                    @if ($pendingAds->onFirstPage())
+                        <span class="page-link disabled">
+                            <i class="fas fa-arrow-left"></i> Précédent
+                        </span>
+                    @else
+                        <a href="{{ $pendingAds->previousPageUrl() }}" class="page-link">
+                            <i class="fas fa-arrow-left"></i> Précédent
+                        </a>
+                    @endif
+
+                    <span class="page-info">
+                        Page {{ $pendingAds->currentPage() }} sur {{ $pendingAds->lastPage() }}
+                    </span>
+
+                    @if ($pendingAds->hasMorePages())
+                        <a href="{{ $pendingAds->nextPageUrl() }}" class="page-link">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    @else
+                        <span class="page-link disabled">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </span>
+                    @endif
                 </div>
             @else
                 <div class="empty-state">
@@ -908,8 +960,31 @@
                 </table>
             </div>
 
+            <!-- PAGINATION SIMPLIFIÉE POUR ESPÈCES -->
             <div class="pagination">
-                {{ $allSpecies->links() }}
+                @if ($allSpecies->onFirstPage())
+                    <span class="page-link disabled">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </span>
+                @else
+                    <a href="{{ $allSpecies->previousPageUrl() }}" class="page-link">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </a>
+                @endif
+
+                <span class="page-info">
+                    Page {{ $allSpecies->currentPage() }} sur {{ $allSpecies->lastPage() }}
+                </span>
+
+                @if ($allSpecies->hasMorePages())
+                    <a href="{{ $allSpecies->nextPageUrl() }}" class="page-link">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </a>
+                @else
+                    <span class="page-link disabled">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </span>
+                @endif
             </div>
         </div>
 
@@ -986,8 +1061,31 @@
                 </table>
             </div>
 
+            <!-- PAGINATION SIMPLIFIÉE POUR UTILISATEURS -->
             <div class="pagination">
-                {{ $allUsers->links() }}
+                @if ($allUsers->onFirstPage())
+                    <span class="page-link disabled">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </span>
+                @else
+                    <a href="{{ $allUsers->previousPageUrl() }}" class="page-link">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </a>
+                @endif
+
+                <span class="page-info">
+                    Page {{ $allUsers->currentPage() }} sur {{ $allUsers->lastPage() }}
+                </span>
+
+                @if ($allUsers->hasMorePages())
+                    <a href="{{ $allUsers->nextPageUrl() }}" class="page-link">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </a>
+                @else
+                    <span class="page-link disabled">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </span>
+                @endif
             </div>
         </div>
 
@@ -1058,8 +1156,31 @@
                     </table>
                 </div>
                 
+                <!-- PAGINATION SIMPLIFIÉE POUR COMPTES SUSPENDUS -->
                 <div class="pagination">
-                    {{ $suspendedUsers->links() }}
+                    @if ($suspendedUsers->onFirstPage())
+                        <span class="page-link disabled">
+                            <i class="fas fa-arrow-left"></i> Précédent
+                        </span>
+                    @else
+                        <a href="{{ $suspendedUsers->previousPageUrl() }}" class="page-link">
+                            <i class="fas fa-arrow-left"></i> Précédent
+                        </a>
+                    @endif
+
+                    <span class="page-info">
+                        Page {{ $suspendedUsers->currentPage() }} sur {{ $suspendedUsers->lastPage() }}
+                    </span>
+
+                    @if ($suspendedUsers->hasMorePages())
+                        <a href="{{ $suspendedUsers->nextPageUrl() }}" class="page-link">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    @else
+                        <span class="page-link disabled">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </span>
+                    @endif
                 </div>
             @else
                 <div class="empty-state">

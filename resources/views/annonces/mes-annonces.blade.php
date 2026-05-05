@@ -1,4 +1,3 @@
-{{-- resources/views/annonces/mes-annonces.blade.php --}}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -636,68 +635,59 @@
             color: #059669 !important;
         }
 
-        /* PAGINATION STYLES CORRIGÉS */
+        /* ========== PAGINATION SIMPLIFIÉE ========== */
         .pagination {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 20px;
             margin-top: 48px;
-            flex-wrap: wrap;
         }
-        
-        .pagination .page-link,
-        .pagination a,
-        .pagination span {
+
+        .page-link {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 0 12px;
+            gap: 10px;
+            padding: 12px 28px;
             background: white;
-            color: #4a5568;
+            color: #2d6a4f;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 50px;
             transition: all 0.3s;
             border: 1px solid #e8ecef;
         }
-        
-        .pagination .page-link:hover,
-        .pagination a:hover {
+
+        .page-link:hover {
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
             color: white;
             border-color: transparent;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
         }
-        
-        .pagination .active,
-        .pagination .page-item.active .page-link {
-            background: linear-gradient(135deg, #1e4620, #2d6a4f);
-            color: white;
-            border-color: transparent;
-        }
-        
-        .pagination .disabled span,
-        .pagination .page-item.disabled .page-link {
+
+        .page-link.disabled {
             opacity: 0.5;
             cursor: not-allowed;
             background: #f1f5f9;
+            color: #94a3b8;
         }
-        
-        /* Style pour les points de suspension */
-        .pagination .page-link.dots {
-            background: transparent;
-            border: none;
-            cursor: default;
-        }
-        
-        .pagination .page-link.dots:hover {
-            background: transparent;
-            color: #4a5568;
+
+        .page-link.disabled:hover {
             transform: none;
+            background: #f1f5f9;
+            color: #94a3b8;
+            box-shadow: none;
+        }
+
+        .page-info {
+            padding: 8px 20px;
+            background: #e8f0e6;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d6a4f;
         }
 
         /* Empty State */
@@ -901,6 +891,17 @@
             .welcome-text h2 { font-size: 32px; }
             .filter-card { flex-direction: column; border-radius: 30px; }
             .filter-tabs { justify-content: center; }
+            .pagination {
+                gap: 12px;
+            }
+            .page-link {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .page-info {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -920,7 +921,19 @@
             .card-content { padding: 16px; }
             .card-title { font-size: 16px; }
             .card-price { font-size: 18px; }
-            .pagination a, .pagination span { min-width: 35px; height: 35px; font-size: 12px; }
+            .pagination {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .page-link {
+                padding: 8px 16px;
+                font-size: 13px;
+                gap: 6px;
+            }
+            .page-info {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -1012,7 +1025,7 @@
         <div class="dashboard-content">
             <div class="welcome-header">
                 <div class="welcome-text">
-                    <h2>Bonjour, {{ Auth::user()->prenom }} 👋</h2>
+                    <h2>Bonjour, {{ Auth::user()->prenom }} </h2>
                     <p>Gérez vos annonces et suivez leurs performances</p>
                 </div>
                 <a href="{{ route('annonces.create') }}" class="btn-create-dashboard">
@@ -1067,11 +1080,11 @@
         <div class="filter-card">
             <div class="filter-tabs">
                 <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => null])) }}" class="filter-tab {{ !request('status') ? 'active' : '' }}">Toutes ({{ $totalAnnonces ?? 0 }})</a>
-                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'brouillon'])) }}" class="filter-tab {{ request('status') == 'brouillon' ? 'active' : '' }}">Brouillons ({{ $brouillonCount ?? 0 }})</a>
-                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'en_attente'])) }}" class="filter-tab {{ request('status') == 'en_attente' ? 'active' : '' }}">En attente ({{ $enAttenteCount ?? 0 }})</a>
-                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'publiee'])) }}" class="filter-tab {{ request('status') == 'publiee' ? 'active' : '' }}">Publiées ({{ $publieeCount ?? 0 }})</a>
-                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'vendue'])) }}" class="filter-tab {{ request('status') == 'vendue' ? 'active' : '' }}">Vendues ({{ $vendueCount ?? 0 }})</a>
-                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'archivee'])) }}" class="filter-tab {{ request('status') == 'archivee' ? 'active' : '' }}">Archivées ({{ $archiveeCount ?? 0 }})</a>
+                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'brouillon'])) }}" class="filter-tab {{ request('status') == 'brouillon' ? 'active' : '' }}">Brouillons </a>
+                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'en_attente'])) }}" class="filter-tab {{ request('status') == 'en_attente' ? 'active' : '' }}">En attente </a>
+                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'publiee'])) }}" class="filter-tab {{ request('status') == 'publiee' ? 'active' : '' }}">Publiées </a>
+                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'vendue'])) }}" class="filter-tab {{ request('status') == 'vendue' ? 'active' : '' }}">Vendues</a>
+                <a href="{{ route('mes-annonces', array_merge(request()->except('status'), ['status' => 'archivee'])) }}" class="filter-tab {{ request('status') == 'archivee' ? 'active' : '' }}">Archivées </a>
             </div>
         </div>
     </div>
@@ -1131,26 +1144,25 @@
                                         </button>
                                     </form>
                                 
-                                {{-- Bouton Marquer comme vendu : seulement pour publiée --}}
-                               {{-- Bouton Marquer comme vendu : seulement pour publiée ET si réponses envoyées --}}
-@elseif($annonce->etat == 'publiee')
-    @php
-        $aDesReponses = $annonce->contacts()->where('destinataire_id', Auth::id())->exists();
-        $aRepondu = $annonce->contacts()->where('destinataire_id', Auth::id())->where('reponse_envoyee', true)->exists();
-    @endphp
-    
-    @if($aDesReponses && !$aRepondu)
-        <span style="color: #f59e0b;" title="Vous devez répondre aux acheteurs avant de vendre">
-            <i class="fas fa-clock"></i> Répondez d'abord
-        </span>
-    @else
-        <form action="{{ route('annonces.sold', $annonce->id) }}" method="POST" style="display: inline;">
-            @csrf
-            <button type="submit" class="action-sold" style="background: none; border: none; color: #10b981; cursor: pointer;" title="Marquer comme vendue">
-                <i class="fas fa-check-circle"></i> Vendre
-            </button>
-        </form>
-    @endif
+                                {{-- Bouton Marquer comme vendu : seulement pour publiée ET si réponses envoyées --}}
+                                @elseif($annonce->etat == 'publiee')
+                                    @php
+                                        $aDesReponses = $annonce->contacts()->where('destinataire_id', Auth::id())->exists();
+                                        $aRepondu = $annonce->contacts()->where('destinataire_id', Auth::id())->where('reponse_envoyee', true)->exists();
+                                    @endphp
+                                    
+                                    @if($aDesReponses && !$aRepondu)
+                                        <span style="color: #f59e0b;" title="Vous devez répondre aux acheteurs avant de vendre">
+                                            <i class="fas fa-clock"></i> Répondez d'abord
+                                        </span>
+                                    @else
+                                        <form action="{{ route('annonces.sold', $annonce->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="action-sold" style="background: none; border: none; color: #10b981; cursor: pointer;" title="Marquer comme vendue">
+                                                <i class="fas fa-check-circle"></i> Vendre
+                                            </button>
+                                        </form>
+                                    @endif
                                 
                                 {{-- En attente : icône horloge --}}
                                 @elseif($annonce->etat == 'en_attente')
@@ -1176,9 +1188,31 @@
                 @endforeach
             </div>
 
-            <!-- PAGINATION CORRIGÉE -->
+            <!-- PAGINATION SIMPLIFIÉE : PRÉCÉDENT ET SUIVANT UNIQUEMENT -->
             <div class="pagination">
-                {{ $annonces->links() }}
+                @if ($annonces->onFirstPage())
+                    <span class="page-link disabled">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </span>
+                @else
+                    <a href="{{ $annonces->previousPageUrl() }}" class="page-link">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </a>
+                @endif
+
+                <span class="page-info">
+                    Page {{ $annonces->currentPage() }} sur {{ $annonces->lastPage() }}
+                </span>
+
+                @if ($annonces->hasMorePages())
+                    <a href="{{ $annonces->nextPageUrl() }}" class="page-link">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </a>
+                @else
+                    <span class="page-link disabled">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </span>
+                @endif
             </div>
         @else
             <div class="empty-state">

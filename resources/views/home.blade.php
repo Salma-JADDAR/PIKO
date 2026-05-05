@@ -1210,61 +1210,67 @@
         </div>
     </div>
 
-    <!-- Annonces Récentes - Titre centré -->
-    <div class="container" style="padding-top: 14px;">
-        <div class="section-header-center">
-            <h2 class="section-title-center">Annonces Récentes</h2>
-            <p class="section-subtitle-center">Les dernières annonces publiées</p>
+  <!-- Annonces Récentes - Titre centré -->
+<div class="container" style="padding-top: 14px;">
+    <div class="section-header-center">
+        <h2 class="section-title-center">Annonces Récentes</h2>
+        <p class="section-subtitle-center">Les dernières annonces publiées</p>
+    </div>
+
+    <div class="recent-special">
+        @php
+            $bgImage = asset('images/default.jpg');
+            
+            if ($annonceRecente) {
+                $photo = $annonceRecente->getPhotoPrincipale();
+                if ($photo && $photo->chemin_stockage) {
+                    // ✅ MÉTHODE SIMPLE ET SÛRE
+                    $bgImage = asset('storage/' . $photo->chemin_stockage);
+                }
+            }
+        @endphp
+        
+        <div class="recent-featured-card" style="background-image: url('{{ $bgImage }}'); background-size: cover; background-position: center;">
+            <div class="recent-featured-badge">Nouveau</div>
+            <div class="recent-featured-content">
+                @if($annonceRecente)
+                    <h3 class="recent-featured-title">{{ $annonceRecente->titre }}</h3>
+                    <p class="recent-featured-description">{{ Str::limit($annonceRecente->description ?? 'Rare spécimen élevé à la main, sociabilisé et en excellente santé.', 80) }}</p>
+                    <div class="recent-featured-price">{{ number_format($annonceRecente->prix, 0, ',', ' ') }}€</div>
+                @else
+                    <h3 class="recent-featured-title">Cacatoès à huppe jaune</h3>
+                    <p class="recent-featured-description">Rare spécimen élevé à la main, sociabilisé et en excellente santé.</p>
+                    <div class="recent-featured-price">2 400€</div>
+                @endif
+            </div>
         </div>
 
-        <div class="recent-special">
-            @php
-                $photo = $annonceRecente ? $annonceRecente->getPhotoPrincipale() : null;
-                $bgImage = asset('images/default.jpg');
-                if ($photo && $photo->chemin_stockage) {
-                    $path = $photo->chemin_stockage;
-                    $path = preg_replace('#^storage/?#', '', $path);
-                    if (!str_starts_with($path, 'images/')) {
-                        $path = 'images/' . $path;
-                    }
-                    $bgImage = asset('storage/' . $path);
-                }
-            @endphp
-            
-            <div class="recent-featured-card" style="background-image: url('{{ $bgImage }}');">
-                <div class="recent-featured-badge">Nouveau</div>
-                <div class="recent-featured-content">
-                    <h3 class="recent-featured-title">{{ $annonceRecente->titre ?? 'Cacatoès à huppe jaune' }}</h3>
-                    <p class="recent-featured-description">{{ Str::limit($annonceRecente->description ?? 'Rare spécimen élevé à la main, sociabilisé et en excellente santé.', 80) }}</p>
-                    <div class="recent-featured-price">{{ number_format($annonceRecente->prix ?? 2400, 0, ',', ' ') }}€</div>
+        <!-- Le reste des side-cards reste identique -->
+        <div class="recent-side-cards">
+            <div class="recent-side-card" style="background-image: url('{{ asset('images/home.PNG') }}'); background-size: cover; background-position: center;">
+                <div class="side-card-icon">
+                    <i class="fas fa-home"></i>
                 </div>
+                <h4 class="side-card-title">Prêt pour un nouveau foyer</h4>
+                <p class="side-card-text">Plus de 50 oiseaux ont trouvé une famille cette semaine.</p>
+                <a href="{{ route('annonces.index') }}" class="side-card-link">Découvrir →</a>
             </div>
 
-            <div class="recent-side-cards">
-                <div class="recent-side-card" style="background-image: url('{{ asset('images/home.PNG') }}');">
-                    <div class="side-card-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h4 class="side-card-title">Prêt pour un nouveau foyer</h4>
-                    <p class="side-card-text">Plus de 50 oiseaux ont trouvé une famille cette semaine.</p>
-                    <a href="{{ route('annonces.index') }}" class="side-card-link">Découvrir →</a>
+            <div class="recent-side-card" style="background-image: url('{{ asset('images/heart.PNG') }}'); background-size: cover; background-position: center;">
+                <div class="side-card-icon">
+                    <i class="fas fa-heart"></i>
                 </div>
-
-                <div class="recent-side-card" style="background-image: url('{{ asset('images/heart.PNG') }}');">
-                    <div class="side-card-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h4 class="side-card-title">Favoris de la semaine</h4>
-                    <p class="side-card-text">Découvrez les espèces les plus recherchées en France.</p>
-                    <div class="side-card-stats">
-                        <span><i class="fas fa-dove"></i> Perruche</span>
-                        <span><i class="fas fa-dove"></i> Canari</span>
-                        <span><i class="fas fa-dove"></i> Perroquet</span>
-                    </div>
+                <h4 class="side-card-title">Favoris de la semaine</h4>
+                <p class="side-card-text">Découvrez les espèces les plus recherchées en France.</p>
+                <div class="side-card-stats">
+                    <span><i class="fas fa-dove"></i> Perruche</span>
+                    <span><i class="fas fa-dove"></i> Canari</span>
+                    <span><i class="fas fa-dove"></i> Perroquet</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Section Comment ça marche - Titre centré -->
     @guest

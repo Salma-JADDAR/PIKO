@@ -326,7 +326,7 @@
             <!-- Détails de la suspension -->
             <div class="info-card">
                 <div class="info-title">
-                    📋 Détails de la suspension
+                  Détails de la suspension
                 </div>
                 <div class="info-row">
                     <span class="info-label">Durée</span>
@@ -345,7 +345,7 @@
             <!-- Raison -->
             <div class="warning-card">
                 <div class="warning-title">
-                    ❌ Raison de la suspension
+                    Raison de la suspension
                 </div>
                 <div class="warning-text">
                     {{ $raison }}

@@ -105,8 +105,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🦜 Piko<span>Marketplace aviaire</span></div>
-            <div class="header-badge">✅ Compte réactivé</div>
+            <div class="logo"> Piko<span>Marketplace aviaire</span></div>
+            <div class="header-badge"> Compte réactivé</div>
         </div>
         <div class="content">
             <h1 class="greeting">Bonjour <span>{{ $user->prenom }}</span>,</h1>
@@ -118,7 +118,7 @@
             </div>
             <p style="color: #475569;">Date de réactivation : {{ $date }}</p>
             <div style="text-align: center;">
-                <a href="{{ route('login') }}" class="btn-primary">🔓 Se connecter</a>
+                <a href="{{ route('login') }}" class="btn-primary"> Se connecter</a>
             </div>
         </div>
         <div class="footer">

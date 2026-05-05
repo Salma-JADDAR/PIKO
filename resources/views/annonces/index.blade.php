@@ -6,6 +6,7 @@
     <title>Piko · Marketplace aviaire - Annonces d'oiseaux</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         * {
             margin: 0;
@@ -290,7 +291,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: scroll; /* Fixed cause problèmes sur mobile */
+            background-attachment: scroll;
             z-index: 0;
         }
         .hero-bg::before {
@@ -615,32 +616,59 @@
             color: #ffd966;
         }
 
-        /* ========== PAGINATION ========== */
+        /* ========== PAGINATION SIMPLIFIÉE ========== */
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .page-link {
-            width: 44px;
-            height: 44px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 12px;
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .page-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
             background: white;
-            color: #4a5568;
+            color: #2d6a4f;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 50px;
             transition: all 0.3s;
             border: 1px solid #e8ecef;
         }
-        .page-link:hover, .page-link.active {
+
+        .page-link:hover {
             background: linear-gradient(135deg, #1e4620, #2d6a4f);
             color: white;
             border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
+        }
+
+        .page-link.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
+
+        .page-link.disabled:hover {
+            transform: none;
+            background: #f1f5f9;
+            color: #94a3b8;
+            box-shadow: none;
+        }
+
+        .page-info {
+            padding: 8px 20px;
+            background: #e8f0e6;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d6a4f;
         }
 
         /* ========== EMPTY STATE ========== */
@@ -838,8 +866,9 @@
             .card-content { padding: 16px; min-height: 260px; }
             .card-title { font-size: 16px; }
             .card-price { font-size: 20px; }
-            .pagination { gap: 8px; }
-            .page-link { width: 38px; height: 38px; font-size: 14px; }
+            .pagination { gap: 12px; }
+            .page-link { padding: 8px 16px; font-size: 13px; }
+            .page-info { padding: 6px 14px; font-size: 12px; }
             .hero-content h1 { font-size: 28px; }
             .hero-content p { font-size: 14px; }
             .search-wrapper { margin-top: -25px; }
@@ -864,6 +893,9 @@
             .favorite-btn i { font-size: 16px; }
             .alert { bottom: 20px; right: 20px; left: 20px; text-align: center; border-radius: 40px; }
             .footer { padding: 40px 20px 24px; }
+            .pagination { gap: 8px; flex-wrap: wrap; }
+            .page-link { padding: 6px 12px; font-size: 12px; gap: 5px; }
+            .page-info { padding: 4px 10px; font-size: 11px; }
         }
     </style>
 </head>
@@ -1072,8 +1104,31 @@
                 @endforeach
             </div>
 
+            <!-- PAGINATION SIMPLIFIÉE : PRÉCÉDENT ET SUIVANT UNIQUEMENT -->
             <div class="pagination">
-                {{ $annonces->appends(request()->query())->links() }}
+                @if ($annonces->onFirstPage())
+                    <span class="page-link disabled">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </span>
+                @else
+                    <a href="{{ $annonces->previousPageUrl() }}" class="page-link">
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </a>
+                @endif
+
+                <span class="page-info">
+                    Page {{ $annonces->currentPage() }} sur {{ $annonces->lastPage() }}
+                </span>
+
+                @if ($annonces->hasMorePages())
+                    <a href="{{ $annonces->nextPageUrl() }}" class="page-link">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </a>
+                @else
+                    <span class="page-link disabled">
+                        Suivant <i class="fas fa-arrow-right"></i>
+                    </span>
+                @endif
             </div>
         @else
             <div class="empty-state">
