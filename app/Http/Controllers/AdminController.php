@@ -26,36 +26,16 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $topSpecies = Espece::where('est_active', true)
-            ->orderBy('nb_annonces_actives', 'desc')
-            ->take(3)
-            ->get();
 
         $totalActiveSpecies = Espece::where('est_active', true)->count();
 
-        $topSpeciesToday = Espece::select('especes.nom_commun', DB::raw('count(annonces.id) as total'))
-            ->join('annonces', 'annonces.espece_id', '=', 'especes.id')
-            ->whereDate('annonces.created_at', today())
-            ->where('annonces.etat', 'publiee')
-            ->groupBy('especes.id', 'especes.nom_commun')
-            ->orderByDesc('total')
-            ->first();
+        $suspendedUsers = User::where('est_suspendu', true)
+         ->orderBy('suspendu_le', 'desc')
+         ->paginate(10);
 
-        if (!$topSpeciesToday) {
-            $topSpeciesToday = Espece::where('est_active', true)
-                ->orderBy('nb_annonces_actives', 'desc')
-                ->first();
-        }
-
-        // 🔥 Utilisateurs suspendus (score < 40) pour le Tab 4
-     $suspendedUsers = User::where('est_suspendu', true)
-    ->orderBy('suspendu_le', 'desc')
-    ->paginate(10);
-
-        // 🔥 TOUS les utilisateurs pour le Tab 3 (avec pagination)
+      
         $allUsers = User::orderBy('created_at', 'desc')->paginate(6);
 
-        // 🔥 Toutes les espèces pour le Tab 2 (avec pagination)
         $allSpecies = Espece::orderBy('nom_commun')->paginate(6);
 
         $stats = [
@@ -67,16 +47,7 @@ class AdminController extends Controller
             'total_favorites' => Favori::count(),
         ];
 
-        return view('admin.dashboard', compact(
-            'pendingAds',
-            'topSpecies',
-            'totalActiveSpecies',
-            'topSpeciesToday',
-            'suspendedUsers',
-            'allSpecies',
-            'stats',
-            'allUsers'
-        ));
+        return view('admin.dashboard', compact('pendingAds','totalActiveSpecies','suspendedUsers','allSpecies', 'stats','allUsers' ));
     }
 
     public function approuver(Request $request, Annonce $annonce)
