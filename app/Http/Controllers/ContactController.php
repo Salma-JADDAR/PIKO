@@ -63,12 +63,11 @@ class ContactController extends Controller
         }
     }
 
-    // Formulaire pour répondre à l'acheteur
-     public function repondreAcheteurForm($contactId)
-{
+ 
+     public function repondreAcheteurForm($contactId){
     $contact = Contact::with('annonce')->findOrFail($contactId);
 
-    // Autoriser uniquement le propriétaire de l'annonce (le vendeur)
+    
     if ($contact->annonce->user_id != Auth::id()) {
         abort(403, 'Vous n\'êtes pas autorisé à répondre à ce message.');
     }
@@ -78,8 +77,7 @@ class ContactController extends Controller
             ->with('info', 'Vous avez déjà répondu à cet acheteur.');
     }
 
-    // Récupérer le téléphone du vendeur (propriétaire de l'annonce)
-    $telephoneVendeur = $contact->annonce->utilisateur->telephone ?? ''; // ou 'phone' selon ton champ
+    $telephoneVendeur = $contact->annonce->utilisateur->telephone ?? ''; 
 
     return view('annonces.repondre-acheteur', compact('contact', 'telephoneVendeur'));
 }
