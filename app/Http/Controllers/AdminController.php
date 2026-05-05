@@ -50,8 +50,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('pendingAds','totalActiveSpecies','suspendedUsers','allSpecies', 'stats','allUsers' ));
     }
 
-    public function approuver(Request $request, Annonce $annonce)
-    {
+    public function approuver(Request $request, Annonce $annonce){
         DB::transaction(function () use ($annonce) {
             $annonce->update([
                 'etat' => 'publiee',
@@ -67,7 +66,7 @@ class AdminController extends Controller
             Log::error('Erreur envoi email approbation: ' . $e->getMessage());
         }
 
-        return redirect()->back()->with('success', 'Annonce approuvée avec succès ✅ +5 points de confiance.');
+        return redirect()->back()->with('success', 'Annonce approuvée avec succès  +5 points de confiance.');
     }
 
     public function rejeter(Request $request, Annonce $annonce)
