@@ -117,8 +117,7 @@ class AdminController extends Controller
     return redirect()->back()->with('success', "Utilisateur suspendu pour {$request->duree_jours} jours.");
 }
   
-public function reactiverUtilisateur(User $user)
-{
+public function reactiverUtilisateur(User $user){
     $user->update([
         'score_confiance' => min(100, $user->score_confiance + 15),
         'est_suspendu' => false,
@@ -126,7 +125,7 @@ public function reactiverUtilisateur(User $user)
         'raison_suspension' => null
     ]);
 
-    return back()->with('success', "Utilisateur {$user->prenom} {$user->nom} réactivé ✅");
+    return back()->with('success', "Utilisateur {$user->prenom} {$user->nom} réactivé ");
 }
 
     public function changerRole(Request $request, User $user)
