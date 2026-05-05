@@ -113,8 +113,7 @@ class ContactController extends Controller
             ->with('success', 'Réponse envoyée. Vous pouvez marquer comme vendue.');
     }
 
-    private function masquerEmail($email)
-    {
+    private function masquerEmail($email){
         $parts = explode('@', $email);
         $name = $parts[0];
         $domain = $parts[1] ?? '';
