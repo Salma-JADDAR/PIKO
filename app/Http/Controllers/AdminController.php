@@ -171,8 +171,7 @@ public function especeStore(Request $request)
         return redirect()->back()->with('success', $espece->est_active ? 'Espèce activée ' : 'Espèce désactivée ');
     }
 
-    public function especeDestroy(Espece $espece)
-    {
+    public function especeDestroy(Espece $espece){
         if ($espece->annonces()->count() > 0) {
             return back()->with('error', 'Impossible de supprimer : des annonces sont associées à cette espèce.');
         }
@@ -181,33 +180,6 @@ public function especeStore(Request $request)
         return redirect()->back()->with('success', 'Espèce supprimée ');
     }
 
-    public function tousContacts()
-    {
-        $contacts = Contact::with(['expediteur', 'destinataire', 'annonce'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
-        
-        return view('admin.contacts', compact('contacts'));
-    }
 
-    public function statistiques()
-    {
-        $annoncesParMois = Annonce::select(
-                DB::raw('DATE_FORMAT(created_at, "%Y-%m") as mois'),
-                DB::raw('count(*) as total')
-            )
-            ->groupBy('mois')
-            ->orderBy('mois', 'desc')
-            ->take(12)
-            ->get();
-        
-        $topVendeurs = User::withCount(['annonces' => function($q) {
-                $q->where('etat', 'publiee');
-            }])
-            ->orderBy('annonces_count', 'desc')
-            ->take(10)
-            ->get();
-        
-        return view('admin.statistiques', compact('annoncesParMois', 'topVendeurs'));
-    }
+  
 }
