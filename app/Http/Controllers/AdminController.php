@@ -128,37 +128,7 @@ public function reactiverUtilisateur(User $user){
     return back()->with('success', "Utilisateur {$user->prenom} {$user->nom} réactivé ");
 }
 
-    public function changerRole(Request $request, User $user)
-    {
-        $request->validate([
-            'role' => 'required|in:standard,verifie,admin'
-        ]);
 
-        $currentUser = auth()->guard()->user();
-        
-        if (!$currentUser) {
-            return redirect()->route('login')->with('error', 'Session expirée, veuillez vous reconnecter.');
-        }
-        
-        if ($currentUser->id === $user->id) {
-            return back()->with('error', 'Vous ne pouvez pas modifier votre propre rôle.');
-        }
-
-        $user->role = $request->role;
-        $user->save();
-
-        return back()->with('success', "Rôle de {$user->prenom} {$user->nom} modifié avec succès.");
-    }
-
-   
-
-  
-
-    public function especesIndex()
-    {
-        $especes = Espece::orderBy('nom_commun')->paginate(15);
-        return view('admin.especes', compact('especes'));
-    }
     
 public function especeStore(Request $request)
 {
@@ -176,7 +146,7 @@ public function especeStore(Request $request)
     $espece->nb_annonces_actives = 0;
     $espece->save();
 
-    return redirect()->back()->with('success', 'Espèce ajoutée avec succès ✅');
+    return redirect()->back()->with('success', 'Espèce ajoutée avec succès ');
 }
     public function especeUpdate(Request $request, Espece $espece)
 {
