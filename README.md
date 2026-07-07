@@ -1,181 +1,123 @@
-<div align="center">
-
-# 🐦 PIKO - Animal Marketplace Platform
+# 🐦 PIKO – Animal Marketplace Platform
 
 <p align="center">
-A modern full-stack web platform for buying and selling animals securely with a dynamic trust score system, administrative validation, secure messaging, and role-based access control.
+A full-stack web application that provides a secure and trusted marketplace for buying and selling animals through advertisement validation, a dynamic trust score system, secure messaging, and role-based access control.
 </p>
 
 <p align="center">
 
-![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge\&logo=laravel)
-![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge\&logo=php)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=for-the-badge\&logo=bootstrap)
-![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge\&logo=mysql)
+![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge&logo=php)
 ![Blade](https://img.shields.io/badge/Blade-Laravel-FB503B?style=for-the-badge)
-![Git](https://img.shields.io/badge/Git-Version_Control-F05032?style=for-the-badge\&logo=git)
-![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge\&logo=github)
-
-</p>
-
----
-
-## 📖 Table of Contents
-
-* [About](#-about)
-* [Project Objectives](#-project-objectives)
-* [Key Features](#-key-features)
-* [Application Modules](#-application-modules)
-* [Technologies](#-technologies)
-* [System Overview](#-system-overview)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=for-the-badge&logo=bootstrap)
+![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql)
+![Git](https://img.shields.io/badge/Git-Version_Control-F05032?style=for-the-badge&logo=git)
 
 ---
 
-# 📌 About
+# 📖 About
 
-**PIKO** is a full-stack web application developed as a graduation project.
+PIKO is a full-stack web application developed to provide a secure marketplace dedicated to animal advertisements.
 
-The platform provides a secure marketplace where users can publish, browse, and purchase animals through a trusted environment.
+The platform enables users to publish, browse, and purchase animals through a trusted environment while reducing fraudulent activities using a dynamic trust score system, administrative validation, secure messaging, and role-based permissions.
 
-Unlike traditional classified advertisement websites, PIKO introduces a **Dynamic Trust Score System**, administrative validation of advertisements, secure messaging, favorites management, and intelligent moderation mechanisms to improve user confidence and reduce fraudulent activities.
-
-The application follows modern web development practices using Laravel and provides a responsive and intuitive user experience.
+Built with Laravel MVC architecture, PIKO focuses on security, scalability, and delivering an intuitive user experience.
 
 ---
 
-# 🎯 Project Objectives
+# 🎯 Objectives
 
-The main objectives of PIKO are:
+The project aims to:
 
-* Build a secure marketplace dedicated to animal advertisements.
-* Improve trust between buyers and sellers.
+* Provide a trusted marketplace for animal advertisements.
+* Improve confidence between buyers and sellers.
 * Prevent fraudulent advertisements.
-* Simplify animal searching and browsing.
-* Provide a responsive and user-friendly interface.
-* Encourage responsible trading through a trust score system.
+* Simplify animal management.
+* Secure communications between users.
 * Offer administrators complete moderation tools.
 
 ---
 
-# 🚀 Key Features
+# ✨ Features
 
-## 🔐 Authentication & User Management
+## 👤 User Management
 
-* Secure user registration
-* Secure login/logout
-* Password hashing
+* User registration and authentication
 * Profile management
-* Email verification
-* Role-based authorization
+* Role-based permissions
 * Dynamic Trust Score
-* Automatic role promotion
+* Automatic promotion to Verified User
 * Automatic account suspension
 
 ---
 
-## 📝 Advertisement Management
-
-Users can:
+## 🐦 Advertisement Management
 
 * Create advertisements
-* Save advertisements as draft
+* Save advertisements as drafts
 * Upload up to five images
 * Edit advertisements
-* Submit advertisements for approval
+* Submit advertisements for validation
 * Mark advertisements as sold
-* Search advertisements
-* Filter advertisements
-* Sort advertisements
+* Search and filter advertisements
+* Sort advertisements by different criteria
 * View advertisement details
 
 ---
 
-## 👑 Administration Panel
+## 📩 Secure Messaging
 
-Administrators can:
-
-* Validate advertisements
-* Reject advertisements with reasons
-* Manage users
-* Suspend accounts
-* Restore suspended users
-* Manage animal species
-* Update user roles
-* Access platform statistics
-
----
-
-## 💬 Secure Messaging
-
-The platform includes an internal messaging system allowing buyers and sellers to communicate safely.
-
-Features include:
-
+* Buyer and seller communication
 * Email masking
-* Anti self-contact protection
 * One conversation per advertisement
 * Seller reply system
 * Automatic email notifications
+* Self-contact prevention
 
 ---
 
 ## ⭐ Favorites
 
-Users can:
-
-* Save favorite advertisements
+* Add advertisements to favorites
 * Remove favorites
-* Access personalized favorite lists
-
-Favorite limits depend on the user's role.
-
----
-
-## 📊 Statistics Dashboard
-
-The administration dashboard provides:
-
-* Total advertisements
-* Pending advertisements
-* Approved advertisements
-* Rejected advertisements
-* Active users
-* Suspended users
-* Trust score monitoring
+* Personalized favorites list
+* Favorite limits based on user role
 
 ---
 
-# 🧩 Application Modules
+## ⭐ Trust Score System
 
-The platform consists of several independent modules:
+The platform evaluates user behavior through a dynamic trust score.
 
-* Authentication Module
-* Advertisement Module
-* Administration Module
-* User Management Module
-* Favorites Module
-* Messaging Module
-* Notification Module
-* Trust Score Engine
-* Animal Species Management
-* Search & Filtering Module
+* Advertisement approval increases trust score
+* Advertisement rejection decreases trust score
+* Automatic promotion to Verified User
+* Automatic suspension for low trust score
 
 ---
 
-# 💡 Why PIKO?
+## 👑 Administration
 
-Unlike traditional marketplace applications, PIKO focuses on building trust between users.
+Global administrators can:
 
-The project introduces several innovative ideas such as:
+* Validate advertisements
+* Reject advertisements with reasons
+* Manage users
+* Suspend and restore accounts
+* Manage animal species
+* View platform statistics
+* Update user roles
 
-* Dynamic Trust Score
-* Advertisement Validation Workflow
-* Secure Messaging
-* Automatic User Promotion
-* Intelligent User Suspension
-* Email Privacy Protection
+---
 
-These mechanisms make the platform safer and more reliable for animal trading.
+# 👥 User Roles
+
+| Role | Permissions |
+|------|-------------|
+| Visitor | Browse advertisements and search animals |
+| Standard User | Publish advertisements, manage favorites, send messages |
+| Verified User | Higher limits and faster advertisement validation |
+| Administrator | Platform administration and moderation |
 
 ---
 
@@ -208,149 +150,89 @@ These mechanisms make the platform safer and more reliable for animal trading.
 * Laravel Debugbar
 * Trello
 * Slack
-* Visual Studio Code
+* VS Code
 
 ---
 
-# 🌍 System Overview
-
-PIKO connects three main actors:
-
-👤 Visitor
-
-⬇
-
-👥 Registered Users
-
-⬇
-
-🛡 Administrator
-
-Each actor has specific permissions designed to guarantee platform security and maintain a high level of trust.
-
----
-
----
-
-# 👥 User Roles
-
-PIKO defines three user roles, each with specific permissions and platform limitations.
-
-| Role              | Permissions                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Visitor**       | Browse advertisements, search animals, and view public information.                                                |
-| **Standard User** | Publish advertisements, manage favorites, send messages, and edit their profile.                                   |
-| **Verified User** | Higher advertisement and favorites limits with accelerated advertisement validation.                               |
-| **Administrator** | Full access to user management, advertisement validation, species management, statistics, and platform moderation. |
-
----
-
-# ⭐ Dynamic Trust Score System
-
-One of the core features of PIKO is the **Dynamic Trust Score System**, designed to improve trust and reduce fraudulent activities.
-
-### Trust Score Rules
-
-| Action                 |                             Score Impact |
-| ---------------------- | ---------------------------------------: |
-| Advertisement approved |                                       +5 |
-| Advertisement rejected |                                      -10 |
-| Trust score ≥ 70       | Automatic promotion to **Verified User** |
-| Trust score < 40       |             Automatic account suspension |
-
-This scoring mechanism encourages responsible behavior and helps maintain a reliable marketplace.
-
----
-
-# 🔄 Advertisement Workflow
-
-Every advertisement follows a validation process before becoming publicly visible.
+# 📂 Project Structure
 
 ```text
-Create Advertisement
-        │
-        ▼
-Save as Draft
-        │
-        ▼
-Submit for Review
-        │
-        ▼
-Administrative Validation
-   ┌───────────────┐
-   │               │
-Approved       Rejected
-   │               │
-Published     Reason Sent to User
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+tests/
 ```
 
 ---
 
-# 🏗️ Project Structure
+# 🔒 Security
 
-```text
-PIKO/
-├── app/
-├── bootstrap/
-├── config/
-├── database/
-├── public/
-├── resources/
-│   ├── views/
-│   ├── css/
-│   └── js/
-├── routes/
-├── storage/
-├── tests/
-└── README.md
+The application includes several security mechanisms:
+
+* Authentication
+* Authorization
+* CSRF Protection
+* XSS Protection
+* Input Validation
+* Secure File Upload
+* Email Privacy Protection
+* Role-based Access Control
+* Dynamic Trust Score Monitoring
+
+---
+
+# 🚀 Installation
+
+```bash
+git clone https://github.com/Salma-JADDAR/PIKO
+
+cd piko
+
+composer install
+
+npm install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+npm run dev
+
+php artisan serve
 ```
 
----
 
-# 🗄️ Main Database Entities
 
-The application database is organized around the following core entities:
+# 🔮 Future Improvements
 
-* Users
-* Roles
-* Advertisements
-* Animal Species
-* Favorites
-* Messages
-* Notifications
-* Trust Scores
-
-These entities work together to provide secure authentication, advertisement management, communication, and moderation features.
-
----
-
-# 🔒 Security Features
-
-PIKO implements several security mechanisms to protect users and platform data.
-
-* Password hashing
-* CSRF protection
-* Role-based authorization
-* Input validation
-* Secure file upload
-* Email privacy protection
-* Advertisement moderation
-* Automatic account suspension based on trust score
-
----
-
-# 📈 Future Improvements
-
-Future versions of PIKO may include:
-
-* Mobile application
-* Online payment integration
-* Interactive maps
-* AI-powered fraud detection
-* Real-time chat
-* Recommendation system
-* Multi-language support
+* Mobile Application
 * REST API
+* AI-based Advertisement Recommendation
+* Advanced Search Filters
+* Online Payment Integration
+* Real-Time Notifications
+* Multi-language Support
+* Analytics Dashboard
 
+---
 
-> ⭐ This project was entirely designed and developed by **Imane** as a Full-Stack Web Development project.
+# 👨‍💻 Author
+
+**Salma**
+
+Computer Science Student
+
+Full-Stack Developer
+
+---
+
+# 📄 License
+
+This project was developed for educational purposes as part of a Full-Stack Web Development graduation project.
